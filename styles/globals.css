@@ -6,7 +6,7 @@ body {
   transition: cubic-bezier(0.19, 1, 0.22, 1) all 1s;
   font-family: "Inter Tight", "Lora", sans-serif;
   color: var(--white);
-  background-color: var(--black);
+  background-color: var(--primal);
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: none;
   -webkit-font-smoothing: antialiased;
@@ -33,12 +33,7 @@ body {
   --bg: #f3f4f6;
 
   /* accent */
-  --sand: #f1ead1;
-  --sandLight: #f1ead125;
-  --yellow: #f8c157;
-  --yellowLight: #f8c15725;
-  --red: #b00000;
-  --redLight: #b0000025;
+  --primal: #242638;
 }
 
 * {

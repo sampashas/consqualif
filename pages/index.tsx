@@ -21,14 +21,14 @@ const Home = () => {
       >
         <div className="absolute z-[1] bottom-0 left-0 right-0">
           <div className="flex pl-[60%] w-full gap-2 justify-center py-3 overflow-hidden">
-            <span className="p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
-              BASEMENT RENOVATION, EXTENSIONS & PERMITS
+            <span className=" p-2 text-[1em] ] whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
+              Basement renovation, Extensions & permits
             </span>
-            <span className="p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
-              BATHROOM RENOVATION, PLUMBING & FRENCH DRAINS
+            <span className="text-[#fff9] p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
+              Bathroom renovation, Plumbing & french drains
             </span>
-            <span className="p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
-              BEDROOM RENOVATION, PLASTERING & PAINTING
+            <span className="text-[#fff9] p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
+              Bedroom renovation, plastering & painting
             </span>
           </div>
         </div>

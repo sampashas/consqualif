@@ -71,7 +71,7 @@ function Content({ displayedProgress }: { displayedProgress: any }) {
   const { loading } = useContext(SContext);
   return (
     <div className="flex h-full justify-center gap-3 flex-col items-center w-full">
-      <div className="flex overflow-hidden w-fit bg-white justify-center items-center">
+      <div className="flex overflow-hidden w-fit justify-center items-center">
         <motion.h4
           initial={{ y: "10%" }}
           animate={{ y: loading ? "-100%" : 0 }}
@@ -82,7 +82,7 @@ function Content({ displayedProgress }: { displayedProgress: any }) {
           }}
           className="uppercase opacity-50 tracking-[.25em] text-[1.5em]"
         >
-          {config.global.logo} <b>{displayedProgress}</b>
+          <b>{displayedProgress}</b>
         </motion.h4>
       </div>
     </div>

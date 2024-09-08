@@ -3,14 +3,13 @@ $base-font-size: 1.5em; // Базовый размер шрифта
 
 h2 {
   font-size: calc(#{$base-font-size} + 1.75vw + 1.75vh);
-  font-family: "Bricolage Grotesque", sans-serif;
+
   line-height: 96%;
   font-weight: 400;
   letter-spacing: -0.05em;
 }
 
 h3 {
-  font-family: "Bricolage Grotesque", sans-serif;
   font-size: calc(#{$base-font-size} + 1.25vw + 1.25vh);
   line-height: 100%;
   font-weight: 400;
@@ -18,7 +17,6 @@ h3 {
 }
 
 h4 {
-  font-family: "Bricolage Grotesque", sans-serif;
   font-size: calc(#{$base-font-size} + 0.5vw + 0.5vh);
   line-height: 100%;
   font-weight: 400;
