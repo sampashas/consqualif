@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  transition: cubic-bezier(0.19, 1, 0.22, 1) all 1s;
+  font-family: "Inter Tight", "Lora", sans-serif;
+  color: #000;
+  background-color: #fff;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  z-index: 0;
+}
+
+:root {
+  /* white */
+  --white: #ffffff;
+  --wh: #ffffff00;
+  --wh15: #ffffff15;
+  --wh50: #ffffff50;
+  /* neutral */
+  --black: #000000;
+  --bl15: #00000015;
+  --bl50: #00000050;
+  --dark: #090809;
+  /* grey */
+  --asphalt: #868ba1;
+  --asphaltLight: #9da3ae;
+  --bg: #f3f4f6;
+  /* accent */
+  --sand: #f1ead1;
+  --sandLight: #f1ead125;
+  --yellow: #f8c157;
+  --yellowLight: #f8c15725;
+  --red: #b00000;
+  --redLight: #b0000025;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Изменение стиля выделения текста */
+::selection {
+  background-color: var(--bg); /* цвет фона выделения */
+  color: var(--black); /* цвет текста при выделении */
+}
+
+/* divs */
+@layer components {
+  .pxes {
+    @apply px-5 min-[600px]:px-6 min-[768px]:px-8;
+  }
+
+  .pyes {
+    @apply pb-48 pt-48;
+  }
+
+  .myes {
+    @apply my-3 md:my-5;
+  }
+
+  /* Helper */
+  /* GUI */
+
+  .bl {
+    @apply border border-black;
+  }
+
+  .bw {
+    @apply border border-white;
+  }
+}
+
+/* количество строк */
+.truncate-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* количество строк, которое вы хотите отображать */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
