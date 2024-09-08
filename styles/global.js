@@ -5,8 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 export const config = {
   global: {
     logo: "Mindesigno",
-    title:
-      "Pavel Zemliansky — Fullstack Desiger. Digital Products, Motion, Development — (c) Mindesigno",
+    title: "Consqualif",
   },
   animations: {
     speed: [0.77, 0, 0.175, 1],

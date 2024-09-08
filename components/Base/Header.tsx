@@ -1,6 +1,8 @@
 import React from "react";
 import useMobile from "../../hooks/useMobile";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { config } from "../../styles/global";
 
 function Header() {
   const mobile = useMobile();
@@ -9,19 +11,51 @@ function Header() {
     <div className="z-[3] fixed overflow-hidden myes pxes w-full">
       <nav className="w-full flex justify-between">
         <ul className="flex gap-8 flex-1">
-          <li>
+          <li className="overflow-hidden h-fit">
             <Link href="/">
-              <span>Home</span>
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{
+                  ease: config.animations.speed,
+                  duration: 1,
+                  delay: 0.4,
+                }}
+              >
+                <span>Home</span>
+              </motion.div>
             </Link>
           </li>
-          <li>
+          <li className="overflow-hidden h-fit">
             <Link href="/portfolio">
-              <span>Portfolio</span>
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{
+                  ease: config.animations.speed,
+                  duration: 1,
+                  delay: 0.2,
+                }}
+              >
+                <span>Portfolio</span>
+              </motion.div>
             </Link>
           </li>
-          <li>
+          <li className="overflow-hidden h-fit">
             <Link href="/service">
-              <span>Service</span>
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{
+                  ease: config.animations.speed,
+                  duration: 1,
+                }}
+              >
+                <span>Service</span>
+              </motion.div>
             </Link>
           </li>
         </ul>
@@ -29,19 +63,51 @@ function Header() {
           <Logo />
         </Link>
         <ul className="flex gap-8 flex-1 justify-end">
-          <li>
+          <li className="overflow-hidden h-fit">
             <Link href="/about">
-              <span>About us</span>
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{
+                  ease: config.animations.speed,
+                  duration: 1,
+                }}
+              >
+                <span>About us</span>
+              </motion.div>
             </Link>
           </li>
-          <li>
+          <li className="overflow-hidden h-fit">
             <Link href="/special">
-              <span>Jobs with</span>
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{
+                  ease: config.animations.speed,
+                  duration: 1,
+                  delay: 0.2,
+                }}
+              >
+                <span>Jobs with</span>
+              </motion.div>
             </Link>
           </li>
-          <li>
+          <li className="overflow-hidden h-fit">
             <Link href="/contacs">
-              <span>Contacts</span>
+              <motion.div
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{
+                  ease: config.animations.speed,
+                  duration: 1,
+                  delay: 0.4,
+                }}
+              >
+                <span>Contacts</span>
+              </motion.div>
             </Link>
           </li>
         </ul>

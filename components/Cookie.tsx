@@ -42,7 +42,7 @@ const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
           animate="visible"
           exit="toDown"
           transition={{ ease: config.animations.speed, delay: 1 }}
-          className="md:w-fit gap-4 w-full py-4 px-6 md:mx-6 flex items-center md:rounded-xl bg-[#00000070] border border-wh15 backdrop-blur-3xl mix-blend-difference "
+          className="md:w-fit gap-4 w-full py-4 px-6 md:mx-6 flex items-center md:rounded-xl bg-[#000] border border-wh15 backdrop-blur-3xl mix-blend-difference "
         >
           <CookieText />
           <div className="flex items-end justify-end gap-2 md:w-full w-fit md:justify-center">

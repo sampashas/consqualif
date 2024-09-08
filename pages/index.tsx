@@ -7,11 +7,11 @@ import { config } from "../styles/global";
 
 const Home = () => {
   const { ref } = useContext(SContext);
-
   const mobie = useMobile();
+
   return (
     <>
-      <Title title="Template - Zemliansky.com" />
+      <Title title={config.global.title} />
       <main
         data-scroll-section
         data-scroll-id
@@ -19,10 +19,23 @@ const Home = () => {
         id="main-container"
         className="will-change-scroll overflow-hidden"
       >
+        <div className="absolute z-[1] bottom-0 left-0 right-0">
+          <div className="flex pl-[60%] w-full gap-2 justify-center py-3 overflow-hidden">
+            <span className="p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
+              BASEMENT RENOVATION, EXTENSIONS & PERMITS
+            </span>
+            <span className="p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
+              BATHROOM RENOVATION, PLUMBING & FRENCH DRAINS
+            </span>
+            <span className="p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
+              BEDROOM RENOVATION, PLASTERING & PAINTING
+            </span>
+          </div>
+        </div>
         <motion.div
-          initial={{ scale: 1.1 }}
+          initial={{ scale: 1.25 }}
           animate={{ scale: 1 }}
-          transition={{ ease: config.animations.speed, duration: 1 }}
+          transition={{ ease: config.animations.speed, duration: 1.5 }}
           className="w-full h-screen"
         >
           <div className="bg-black opacity-50 absolute h-screen w-full"></div>
