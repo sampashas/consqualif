@@ -27,13 +27,8 @@ body {
   --bl50: #00000050;
   --dark: #090809;
 
-  /* grey */
-  --asphalt: #868ba1;
-  --asphaltLight: #9da3ae;
-  --bg: #f3f4f6;
-
-  /* accent */
-  --primal: #242638;
+  /* vars */
+  --primary: #242638;
 }
 
 * {

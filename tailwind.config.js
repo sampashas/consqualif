@@ -21,17 +21,8 @@ module.exports = {
         black: "var(--black)",
         bl15: "var(--bl15)",
         bl50: "var(--bl50)",
-        /* grey */
-        asphalt: "var(--asphalt)",
-        asphaltLight: "var(--asphaltLight)",
-        bg: "var(--bg)",
         /* accent */
-        yellow: "var(--yellow)",
-        yellowLight: "var(--yellowLight)",
-        sand: "var(--sand)",
-        sandLight: "var(--sandLight)",
-        red: "var(--red)",
-        redLight: "var(--redLight)",
+        primary: "var(--primary)",
       },
       transitionTimingFunction: {
         "smooth-ease": "cubic-bezier(0.77, 0, 0.175, 1)",
@@ -42,8 +33,8 @@ module.exports = {
       },
       keyframes: {
         runner: {
-          "0%": { transform: "translateX(105%)" },
-          "100%": { transform: "translateX(-220%)" },
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
         },
         zoom: {
           "0%": { transform: "scale(1)" },

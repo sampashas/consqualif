@@ -1,13 +1,11 @@
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import Title from "../components/Title";
-import useMobile from "../hooks/useMobile";
 import SContext from "../contexts/SContext";
 import { motion } from "framer-motion";
 import { config } from "../styles/global";
 
 const Home = () => {
   const { ref } = useContext(SContext);
-  const mobie = useMobile();
 
   return (
     <>
@@ -19,17 +17,39 @@ const Home = () => {
         id="main-container"
         className="will-change-scroll overflow-hidden"
       >
-        <div className="absolute z-[1] bottom-0 left-0 right-0">
-          <div className="flex pl-[60%] w-full gap-2 justify-center py-3 overflow-hidden">
-            <span className=" p-2 text-[1em] ] whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
+        <motion.div
+          initial={{ y: "100%" }}
+          animate={{ y: "0%" }}
+          exit={{ y: "100%" }}
+          transition={{
+            ease: config.animations.speed,
+            duration: 1,
+          }}
+          className="absolute z-[1] bottom-0 left-0 right-0"
+        >
+          <div className="w-full trans h-full flex border-t-[1px] border-[#fff2] pl-[55%] gap-3 justify-center items-center py-3 overflow-hidden">
+            <div className="h-full border opacity-50" />
+            <span className=" whitespace-nowrap px-4 rounded-lg ">
               Basement renovation, Extensions & permits
             </span>
-            <span className="text-[#fff9] p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
+            <div className="h-full border opacity-50" />
+            <span className="text-[#fff9] p-2 whitespace-nowrap px-4 rounded-lg ">
               Bathroom renovation, Plumbing & french drains
             </span>
-            <span className="text-[#fff9] p-2 whitespace-nowrap px-4 rounded-lg bg-wh15 border-[#fff2] backdrop-blur-3xl border-[1px]">
+            <div className="h-full border opacity-50" />
+            <span className="text-[#fff9] p-2 whitespace-nowrap px-4 rounded-lg ">
               Bedroom renovation, plastering & painting
             </span>
+          </div>
+        </motion.div>
+        <div className="w-full h-screen z-[2] flex items-center absolute">
+          <div className="flex gap-6 animate-runner w-full h-48">
+            <h2 className="whitespace-nowrap">
+              Experience luxurious construction & quality with us –
+            </h2>
+            <h2 className="whitespace-nowrap">
+              Experience luxurious construction & quality with us
+            </h2>
           </div>
         </div>
         <motion.div
@@ -38,9 +58,9 @@ const Home = () => {
           transition={{ ease: config.animations.speed, duration: 1.5 }}
           className="w-full h-screen"
         >
-          <div className="bg-black opacity-50 absolute h-screen w-full"></div>
+          <div className="bg-black z-[1] opacity-50 absolute h-screen w-full"></div>
           <img
-            className="h-screen object-cover"
+            className="h-screen object-cover animate-zoom"
             src="/slider/1.png"
             alt=""
           ></img>
