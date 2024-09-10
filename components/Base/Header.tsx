@@ -10,109 +10,122 @@ function Header() {
   return (
     <div className="z-[3] fixed overflow-hidden myes pxes w-full">
       <nav className="w-full flex justify-between">
-        <ul className=" h-fit flex flex-1 gap-8">
-          <li className="overflow-hidden h-fit">
-            <Link href="/">
-              <motion.div
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                transition={{
-                  ease: config.animations.speed,
-                  duration: 1,
-                  delay: 0.4,
-                }}
-              >
-                <span>Home</span>
-              </motion.div>
-            </Link>
-          </li>
-          <li className="overflow-hidden h-fit">
-            <Link href="/portfolio">
-              <motion.div
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                transition={{
-                  ease: config.animations.speed,
-                  duration: 1,
-                  delay: 0.2,
-                }}
-              >
-                <span>Portfolio</span>
-              </motion.div>
-            </Link>
-          </li>
-          <li className="overflow-hidden h-fit">
-            <Link href="/service">
-              <motion.div
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                transition={{
-                  ease: config.animations.speed,
-                  duration: 1,
-                }}
-              >
-                <span>Service</span>
-              </motion.div>
-            </Link>
-          </li>
-        </ul>
+        <LeftNav />
         <Link href="/">
           <Logo />
         </Link>
-        <ul className=" h-fit flex flex-1 gap-8 justify-end">
-          <li className="overflow-hidden h-fit">
-            <Link href="/about">
-              <motion.div
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                transition={{
-                  ease: config.animations.speed,
-                  duration: 1,
-                }}
-              >
-                <span>About us</span>
-              </motion.div>
-            </Link>
-          </li>
-          <li className="overflow-hidden h-fit">
-            <Link href="/special">
-              <motion.div
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                transition={{
-                  ease: config.animations.speed,
-                  duration: 1,
-                  delay: 0.2,
-                }}
-              >
-                <span>Jobs with</span>
-              </motion.div>
-            </Link>
-          </li>
-          <li className="overflow-hidden h-fit">
-            <Link href="/contacs">
-              <motion.div
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                transition={{
-                  ease: config.animations.speed,
-                  duration: 1,
-                  delay: 0.4,
-                }}
-              >
-                <span>Contacts</span>
-              </motion.div>
-            </Link>
-          </li>
-        </ul>
+        <RightNav />
       </nav>
     </div>
+  );
+}
+
+function LeftNav() {
+  return (
+    <ul className=" h-fit flex flex-1 gap-8">
+      <li className="overflow-hidden h-fit">
+        <Link href="/">
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{
+              ease: config.animations.speed,
+              duration: 1,
+              delay: 1.6,
+            }}
+          >
+            <span>Home</span>
+          </motion.div>
+        </Link>
+      </li>
+      <li className="overflow-hidden h-fit">
+        <Link href="/portfolio">
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{
+              ease: config.animations.speed,
+              duration: 1,
+              delay: 1.7,
+            }}
+          >
+            <span>Portfolio</span>
+          </motion.div>
+        </Link>
+      </li>
+      <li className="overflow-hidden h-fit">
+        <Link href="/service">
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{
+              ease: config.animations.speed,
+              duration: 1,
+              delay: 1.8,
+            }}
+          >
+            <span>Service</span>
+          </motion.div>
+        </Link>
+      </li>
+    </ul>
+  );
+}
+function RightNav() {
+  return (
+    <ul className=" h-fit flex flex-1 gap-8 justify-end">
+      <li className="overflow-hidden h-fit">
+        <Link href="/about">
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{
+              ease: config.animations.speed,
+              duration: 1,
+              delay: 1.6,
+            }}
+          >
+            <span>About us</span>
+          </motion.div>
+        </Link>
+      </li>
+      <li className="overflow-hidden h-fit">
+        <Link href="/special">
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{
+              ease: config.animations.speed,
+              duration: 1,
+              delay: 1.7,
+            }}
+          >
+            <span>Jobs with</span>
+          </motion.div>
+        </Link>
+      </li>
+      <li className="overflow-hidden h-fit">
+        <Link href="/contacs">
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{
+              ease: config.animations.speed,
+              duration: 1,
+              delay: 1.8,
+            }}
+          >
+            <span>Contacts</span>
+          </motion.div>
+        </Link>
+      </li>
+    </ul>
   );
 }
 
@@ -125,6 +138,7 @@ function Logo() {
       transition={{
         ease: config.animations.speed,
         duration: 1,
+        delay: 1.5,
       }}
       width="255"
       height="34"

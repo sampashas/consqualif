@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Title from "../components/Title";
 import SContext from "../contexts/SContext";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,17 +13,17 @@ const Home = () => {
     {
       id: uuidv4(),
       img: "/slider/1.png",
-      name: "Basement renovation, Extensions & permits",
+      name: "Basement, Extensions & permits",
     },
     {
       id: uuidv4(),
       img: "/slider/2.png",
-      name: "Bathroom renovation, Plumbing & french drains",
+      name: "Bathroom, Plumbing & french drains",
     },
     {
       id: uuidv4(),
       img: "/slider/3.png",
-      name: "Bedroom renovation, plastering & painting",
+      name: "Bedroom, plastering & painting",
     },
   ];
 
@@ -44,16 +44,7 @@ const Home = () => {
           setCurrentIndex={setCurrentIndex}
         />
         {/* TextLine */}
-        <div className="absolute w-full h-screen z-[3] flex items-center">
-          <div className="flex gap-6 animate-runner w-full h-48">
-            <h2 className="whitespace-nowrap">
-              Experience luxurious construction & quality with us –
-            </h2>
-            <h2 className="whitespace-nowrap">
-              Experience luxurious construction & quality with us
-            </h2>
-          </div>
-        </div>
+        <TextLine />
         {/* Slider */}
         <motion.div
           initial={{ scale: 1.25 }}
@@ -73,50 +64,22 @@ const Home = () => {
   );
 };
 
-function Pagination({
-  arr,
-  currentIndex,
-  setCurrentIndex,
-}: {
-  arr: Slide[];
-  currentIndex: number;
-  setCurrentIndex: (index: number) => void;
-}) {
-  const offset = (currentIndex * 80) / arr.length;
-
+function TextLine() {
   return (
     <motion.div
-      initial={{ y: "100%" }}
-      animate={{ y: "0%" }}
-      exit={{ y: "100%" }}
-      transition={{
-        ease: config.animations.speed,
-        duration: 1,
-        delay: 1,
-      }}
-      className="absolute overflow-hidden border-t-[1px] border-[#fff2] z-[4] bottom-0 left-0 right-0"
+      initial={{ y: 100, rotateZ: 10 }}
+      animate={{ y: 0, rotateZ: 0 }}
+      transition={{ ease: config.animations.speed, duration: 1.5, delay: 1 }}
+      className="absolute w-full h-screen z-[3] flex items-center"
     >
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: `-${offset}%` }}
-        transition={{
-          ease: config.animations.speed,
-          duration: 1,
-        }}
-        className="w-full h-full flex pl-[55%] gap-3 justify-center items-center py-[1em] "
-      >
-        {arr.map((slide, index) => (
-          <span
-            key={slide.id}
-            onClick={() => setCurrentIndex(currentIndex)}
-            className={`cursor-pointer duration-300 p-2 whitespace-nowrap px-4 rounded-lg ${
-              index === currentIndex ? "bg-[#fff2]" : "text-[#fff7]"
-            }`}
-          >
-            {slide.name}
-          </span>
-        ))}
-      </motion.div>
+      <div className="flex gap-6 animate-runner w-full h-48">
+        <h2 className="whitespace-nowrap">
+          Experience luxurious construction & quality with us –
+        </h2>
+        <h2 className="whitespace-nowrap">
+          Experience luxurious construction & quality with us
+        </h2>
+      </div>
     </motion.div>
   );
 }
@@ -138,22 +101,23 @@ function Slider({
     setCurrentIndex((prev) => (prev + arr.length - 1) % arr.length);
   };
 
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-  };
+  // const variants = {
+  //   enter: (direction: number) => ({
+  //     x: direction > 0 ? 1000 : -1000,
+  //     opacity: 0,
+  //   }),
+  //   center: {
+  //     zIndex: 1,
+  //     x: 0,
+  //     opacity: 1,
+  //   },
+  //   exit: (direction: number) => ({
+  //     zIndex: 0,
+  //     x: direction < 0 ? 1000 : -1000,
+  //     opacity: 0,
+  //   }),
+  // };
+  const offset = (currentIndex * 80) / arr.length;
 
   return (
     <div className="relative flex flex-col items-center justify-center">
@@ -169,19 +133,66 @@ function Slider({
           key={currentIndex}
           src={arr[currentIndex].img}
           custom={currentIndex}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
+          initial={{ x: 0 }}
+          animate={{ x: `-${offset}%` }}
           transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 },
+            ease: config.animations.speed,
+            duration: 1,
           }}
           className="overflow-hidden h-screen object-cover animate-zoom"
           alt=""
         />
       </AnimatePresence>
     </div>
+  );
+}
+
+function Pagination({
+  arr,
+  currentIndex,
+  setCurrentIndex,
+}: {
+  arr: Slide[];
+  currentIndex: number;
+  setCurrentIndex: (index: number) => void;
+}) {
+  // Calculating the percentage offset of the current index
+  const offset = (currentIndex * 80) / arr.length;
+
+  return (
+    <motion.div
+      initial={{ y: "100%" }}
+      animate={{ y: "0%" }}
+      exit={{ y: "100%" }}
+      transition={{
+        ease: config.animations.speed,
+        duration: 1.25,
+        delay: 1,
+      }}
+      className="absolute overflow-hidden border-t-[1px] border-[#fff2] z-[4] bottom-0 left-0 right-0"
+    >
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: `-${offset}%` }}
+        transition={{
+          ease: config.animations.speed,
+          duration: 1,
+        }}
+        className="w-full h-full flex  gap-3 justify-center items-center py-[.5em]"
+      >
+        {arr.map((slide, index) => (
+          <span
+            key={slide.id}
+            onClick={() => setCurrentIndex(index)} // Correctly using the index from the map function
+            className={`cursor-pointer duration-300 p-2 whitespace-nowrap px-4 rounded-lg ${
+              index === currentIndex ? "bg-[#fff2]" : "text-[#fff7]"
+            }`}
+          >
+            {slide.name}
+          </span>
+        ))}
+      </motion.div>
+    </motion.div>
   );
 }
 

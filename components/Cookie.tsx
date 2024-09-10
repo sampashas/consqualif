@@ -38,11 +38,15 @@ const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
     <div className="fixed z-10 left-0 right-0 bottom-0 items-center md:bottom-3 w-full flex">
       <AnimatePresence mode="wait">
         <motion.div
-          initial="toUp"
-          animate="visible"
+          initial={{ y: "150%" }}
+          animate={{ y: "0%" }}
           exit="toDown"
-          transition={{ ease: config.animations.speed, delay: 1 }}
-          className="md:w-fit border-[1px] gap-4 w-full py-3 px-4 md:mx-3 flex items-center md:rounded-xl bg-primary  border-wh15 backdrop-blur-3xl mix-blend-difference "
+          transition={{
+            ease: config.animations.speed,
+            duration: 1.5,
+            delay: 1.1,
+          }}
+          className="md:w-fit bg-black border-wh15 border-[1px] gap-4 w-full py-2 px-4 md:mx-3 flex items-center md:rounded-xl backdrop-blur-3xl mix-blend-difference "
         >
           <CookieText />
           <div className="flex items-end justify-end gap-2 md:w-full w-fit md:justify-center">
