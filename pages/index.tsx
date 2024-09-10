@@ -1,31 +1,31 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import Title from "../components/Title";
 import SContext from "../contexts/SContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { config } from "../styles/global";
 import { v4 as uuidv4 } from "uuid";
 
+const arr: Slide[] = [
+  {
+    id: uuidv4(),
+    img: "/slider/1.png",
+    name: "Basement, Extensions & permits",
+  },
+  {
+    id: uuidv4(),
+    img: "/slider/2.png",
+    name: "Bathroom, Plumbing & french drains",
+  },
+  {
+    id: uuidv4(),
+    img: "/slider/3.png",
+    name: "Bedroom, plastering & painting",
+  },
+];
+
 const Home = () => {
   const { ref } = useContext(SContext);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const arr: Slide[] = [
-    {
-      id: uuidv4(),
-      img: "/slider/1.png",
-      name: "Basement, Extensions & permits",
-    },
-    {
-      id: uuidv4(),
-      img: "/slider/2.png",
-      name: "Bathroom, Plumbing & french drains",
-    },
-    {
-      id: uuidv4(),
-      img: "/slider/3.png",
-      name: "Bedroom, plastering & painting",
-    },
-  ];
 
   return (
     <>
@@ -52,6 +52,18 @@ const Home = () => {
           transition={{ ease: config.animations.speed, duration: 1.5 }}
           className="w-full h-screen"
         >
+          <motion.p
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            transition={{
+              ease: config.animations.speed,
+              duration: 1.5,
+              delay: 1,
+            }}
+            className="absolute opacity-75 bottom-[5em] right-[2.5em] text-white z-[3]"
+          >
+            6393 Cressy St, Creston, CA
+          </motion.p>
           <div className="absolute bg-black z-[2] opacity-50  h-screen w-full"></div>
           <Slider
             arr={arr}
@@ -67,8 +79,8 @@ const Home = () => {
 function TextLine() {
   return (
     <motion.div
-      initial={{ y: 100, rotateZ: 10 }}
-      animate={{ y: 0, rotateZ: 0 }}
+      initial={{ y: 100, x: 100 }}
+      animate={{ y: 0, x: 0 }}
       transition={{ ease: config.animations.speed, duration: 1.5, delay: 1 }}
       className="absolute w-full h-screen z-[3] flex items-center"
     >
@@ -101,24 +113,6 @@ function Slider({
     setCurrentIndex((prev) => (prev + arr.length - 1) % arr.length);
   };
 
-  // const variants = {
-  //   enter: (direction: number) => ({
-  //     x: direction > 0 ? 1000 : -1000,
-  //     opacity: 0,
-  //   }),
-  //   center: {
-  //     zIndex: 1,
-  //     x: 0,
-  //     opacity: 1,
-  //   },
-  //   exit: (direction: number) => ({
-  //     zIndex: 0,
-  //     x: direction < 0 ? 1000 : -1000,
-  //     opacity: 0,
-  //   }),
-  // };
-  const offset = (currentIndex * 80) / arr.length;
-
   return (
     <div className="relative flex flex-col items-center justify-center">
       <AnimatePresence initial={false} custom={currentIndex}>
@@ -133,14 +127,11 @@ function Slider({
           key={currentIndex}
           src={arr[currentIndex].img}
           custom={currentIndex}
-          initial={{ x: 0 }}
-          animate={{ x: `-${offset}%` }}
           transition={{
             ease: config.animations.speed,
-            duration: 1,
+            duration: 5,
           }}
-          className="overflow-hidden h-screen object-cover animate-zoom"
-          alt=""
+          className="object-cover h-screen animate-zoom"
         />
       </AnimatePresence>
     </div>
@@ -172,8 +163,6 @@ function Pagination({
       className="absolute overflow-hidden border-t-[1px] border-[#fff2] z-[4] bottom-0 left-0 right-0"
     >
       <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: `-${offset}%` }}
         transition={{
           ease: config.animations.speed,
           duration: 1,

@@ -29,7 +29,7 @@ module.exports = {
       },
       animation: {
         runner: "runner 30s linear infinite",
-        zoom: "zoom 30s linear infinite",
+        zoom: "zoom 20s linear infinite",
       },
       keyframes: {
         runner: {
