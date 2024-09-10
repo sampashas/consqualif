@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 // Site
 export const config = {
   global: {
-    logo: "Mindesigno",
+    logo: "Pavel Z.",
     title: "Consqualif",
   },
   animations: {

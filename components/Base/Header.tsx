@@ -10,7 +10,7 @@ function Header() {
   return (
     <div className="z-[3] fixed overflow-hidden myes pxes w-full">
       <nav className="w-full flex justify-between">
-        <ul className="mn-max:hidden flex gap-8 flex-1">
+        <ul className=" h-fit flex flex-1 gap-8">
           <li className="overflow-hidden h-fit">
             <Link href="/">
               <motion.div
@@ -62,7 +62,7 @@ function Header() {
         <Link href="/">
           <Logo />
         </Link>
-        <ul className="mn-max:hidden flex gap-8 flex-1 justify-end">
+        <ul className=" h-fit flex flex-1 gap-8 justify-end">
           <li className="overflow-hidden h-fit">
             <Link href="/about">
               <motion.div

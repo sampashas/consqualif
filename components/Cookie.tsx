@@ -42,21 +42,21 @@ const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
           animate="visible"
           exit="toDown"
           transition={{ ease: config.animations.speed, delay: 1 }}
-          className="md:w-fit gap-4 w-full py-3 px-4 md:mx-3 flex items-center md:rounded-xl bg-primary  border-wh15 backdrop-blur-3xl mix-blend-difference "
+          className="md:w-fit border-[1px] gap-4 w-full py-3 px-4 md:mx-3 flex items-center md:rounded-xl bg-primary  border-wh15 backdrop-blur-3xl mix-blend-difference "
         >
           <CookieText />
           <div className="flex items-end justify-end gap-2 md:w-full w-fit md:justify-center">
             <button
               aria-label="close"
               onClick={handleDecline}
-              className="btn text-white bg-[#fff2] border-[#fff2] border-[1px] rounded-md w-14 h-8 px-2 md:w-full"
+              className="btn hover:scale-105 duration-150 text-white bg-[#fff2] border-[#fff2] border-[1px] rounded-md w-14 h-8 px-2 md:w-full"
             >
               <X />
             </button>
             <button
               aria-label="aprove"
               onClick={handleConsent}
-              className="btn text-white bg-[#fff2] border-[#fff2] border-[1px] rounded-md w-14 h-8 px-2 md:w-full"
+              className="btn hover:scale-105 duration-150 text-white bg-[#fff2] border-[#fff2] border-[1px] rounded-md w-14 h-8 px-2 md:w-full"
             >
               <Check />
             </button>

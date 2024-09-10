@@ -8,6 +8,7 @@ body {
   color: var(--white);
   background-color: var(--primal);
   text-rendering: optimizeLegibility;
+  overflow: hidden;
   -webkit-text-size-adjust: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

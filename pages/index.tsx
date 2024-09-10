@@ -1,11 +1,31 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Title from "../components/Title";
 import SContext from "../contexts/SContext";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { config } from "../styles/global";
+import { v4 as uuidv4 } from "uuid";
 
 const Home = () => {
   const { ref } = useContext(SContext);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const arr: Slide[] = [
+    {
+      id: uuidv4(),
+      img: "/slider/1.png",
+      name: "Basement renovation, Extensions & permits",
+    },
+    {
+      id: uuidv4(),
+      img: "/slider/2.png",
+      name: "Bathroom renovation, Plumbing & french drains",
+    },
+    {
+      id: uuidv4(),
+      img: "/slider/3.png",
+      name: "Bedroom renovation, plastering & painting",
+    },
+  ];
 
   return (
     <>
@@ -15,34 +35,16 @@ const Home = () => {
         data-scroll-id
         ref={ref}
         id="main-container"
-        className="will-change-scroll overflow-hidden"
+        className="will-change-scroll overflow-hidden relative"
       >
-        <motion.div
-          initial={{ y: "100%" }}
-          animate={{ y: "0%" }}
-          exit={{ y: "100%" }}
-          transition={{
-            ease: config.animations.speed,
-            duration: 1,
-          }}
-          className="absolute z-[1] bottom-0 left-0 right-0"
-        >
-          <div className="w-full trans h-full flex border-t-[1px] border-[#fff2] pl-[55%] gap-3 justify-center items-center py-3 overflow-hidden">
-            <div className="h-full border opacity-50" />
-            <span className=" whitespace-nowrap px-4 rounded-lg ">
-              Basement renovation, Extensions & permits
-            </span>
-            <div className="h-full border opacity-50" />
-            <span className="text-[#fff9] p-2 whitespace-nowrap px-4 rounded-lg ">
-              Bathroom renovation, Plumbing & french drains
-            </span>
-            <div className="h-full border opacity-50" />
-            <span className="text-[#fff9] p-2 whitespace-nowrap px-4 rounded-lg ">
-              Bedroom renovation, plastering & painting
-            </span>
-          </div>
-        </motion.div>
-        <div className="w-full h-screen z-[2] flex items-center absolute">
+        {/* Pagination */}
+        <Pagination
+          arr={arr}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+        />
+        {/* TextLine */}
+        <div className="absolute w-full h-screen z-[3] flex items-center">
           <div className="flex gap-6 animate-runner w-full h-48">
             <h2 className="whitespace-nowrap">
               Experience luxurious construction & quality with us –
@@ -52,22 +54,141 @@ const Home = () => {
             </h2>
           </div>
         </div>
+        {/* Slider */}
         <motion.div
           initial={{ scale: 1.25 }}
           animate={{ scale: 1 }}
           transition={{ ease: config.animations.speed, duration: 1.5 }}
           className="w-full h-screen"
         >
-          <div className="bg-black z-[1] opacity-50 absolute h-screen w-full"></div>
-          <img
-            className="h-screen object-cover animate-zoom"
-            src="/slider/1.png"
-            alt=""
-          ></img>
+          <div className="absolute bg-black z-[2] opacity-50  h-screen w-full"></div>
+          <Slider
+            arr={arr}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+          />
         </motion.div>
       </main>
     </>
   );
+};
+
+function Pagination({
+  arr,
+  currentIndex,
+  setCurrentIndex,
+}: {
+  arr: Slide[];
+  currentIndex: number;
+  setCurrentIndex: (index: number) => void;
+}) {
+  const offset = (currentIndex * 80) / arr.length;
+
+  return (
+    <motion.div
+      initial={{ y: "100%" }}
+      animate={{ y: "0%" }}
+      exit={{ y: "100%" }}
+      transition={{
+        ease: config.animations.speed,
+        duration: 1,
+        delay: 1,
+      }}
+      className="absolute overflow-hidden border-t-[1px] border-[#fff2] z-[4] bottom-0 left-0 right-0"
+    >
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: `-${offset}%` }}
+        transition={{
+          ease: config.animations.speed,
+          duration: 1,
+        }}
+        className="w-full h-full flex pl-[55%] gap-3 justify-center items-center py-[1em] "
+      >
+        {arr.map((slide, index) => (
+          <span
+            key={slide.id}
+            onClick={() => setCurrentIndex(currentIndex)}
+            className={`cursor-pointer duration-300 p-2 whitespace-nowrap px-4 rounded-lg ${
+              index === currentIndex ? "bg-[#fff2]" : "text-[#fff7]"
+            }`}
+          >
+            {slide.name}
+          </span>
+        ))}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function Slider({
+  arr,
+  currentIndex,
+  setCurrentIndex,
+}: {
+  arr: Slide[];
+  currentIndex: number;
+  setCurrentIndex: (index: number | ((index: number) => number)) => void;
+}) {
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % arr.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev + arr.length - 1) % arr.length);
+  };
+
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+  };
+
+  return (
+    <div className="relative flex flex-col items-center justify-center">
+      <AnimatePresence initial={false} custom={currentIndex}>
+        <div className="flex gap-12 absolute z-[20] left-0 right-0">
+          <div onClick={prevSlide} className="w-full h-screen cursor-pointer" />
+          <div
+            onClick={nextSlide}
+            className="w-full h-screen absolute cursor-pointer"
+          />
+        </div>
+        <motion.img
+          key={currentIndex}
+          src={arr[currentIndex].img}
+          custom={currentIndex}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 },
+          }}
+          className="overflow-hidden h-screen object-cover animate-zoom"
+          alt=""
+        />
+      </AnimatePresence>
+    </div>
+  );
+}
+
+type Slide = {
+  id: string;
+  img: string;
+  name: string;
 };
 
 export default Home;
