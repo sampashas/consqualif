@@ -10,16 +10,19 @@ const arr: Slide[] = [
     id: uuidv4(),
     img: "/slider/1.png",
     name: "Basement, Extensions & permits",
+    map: "6393 Cressy St, Creston, CA",
   },
   {
     id: uuidv4(),
     img: "/slider/2.png",
     name: "Bathroom, Plumbing & french drains",
+    map: "1244 Boston St, Creston, LA",
   },
   {
     id: uuidv4(),
     img: "/slider/3.png",
     name: "Bedroom, plastering & painting",
+    map: "9188 Goodwin St, Creston, NY",
   },
 ];
 
@@ -37,33 +40,34 @@ const Home = () => {
         id="main-container"
         className="will-change-scroll overflow-hidden relative"
       >
-        {/* Pagination */}
         <Pagination
           arr={arr}
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
         />
-        {/* TextLine */}
         <TextLine />
-        {/* Slider */}
         <motion.div
           initial={{ scale: 1.25 }}
           animate={{ scale: 1 }}
           transition={{ ease: config.animations.speed, duration: 1.5 }}
           className="w-full h-screen"
         >
-          <motion.p
-            initial={{ y: 100 }}
-            animate={{ y: 0 }}
-            transition={{
-              ease: config.animations.speed,
-              duration: 1.5,
-              delay: 1,
-            }}
-            className="absolute opacity-75 bottom-[5em] right-[2.5em] text-white z-[3]"
-          >
-            6393 Cressy St, Creston, CA
-          </motion.p>
+          {arr.map((obj, id) => (
+            <motion.p
+              initial={{ y: 100, opacity: 0 }}
+              animate={{
+                y: 0,
+                opacity: id === currentIndex ? 1 : 0,
+              }}
+              transition={{
+                ease: config.animations.speed,
+                duration: 1.5,
+              }}
+              className="absolute opacity-75 bottom-[5em] right-[2.5em] text-white z-[3]"
+            >
+              {obj.map}
+            </motion.p>
+          ))}
           <div className="absolute bg-black z-[2] opacity-50  h-screen w-full"></div>
           <Slider
             arr={arr}
@@ -189,6 +193,7 @@ type Slide = {
   id: string;
   img: string;
   name: string;
+  map: string;
 };
 
 export default Home;
