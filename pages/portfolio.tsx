@@ -1,6 +1,6 @@
-import Title from "../components/Title";
 import { motion } from "framer-motion";
-import { config } from "../styles/global";
+import Title from "../components/Title";
+import { config, slides } from "../styles/global";
 
 const Portfolio = () => {
   return (
@@ -10,14 +10,29 @@ const Portfolio = () => {
         data-scroll-section
         data-scroll-id
         id="main-container"
-        className="will-change-scroll overflow-hidden relative"
+        className="will-change-scroll relative"
       >
-        <motion.div
-          initial={{ scale: 1.25 }}
-          animate={{ scale: 1 }}
-          transition={{ ease: config.animations.speed, duration: 1.5 }}
-          className="w-full h-screen bg-black"
-        ></motion.div>
+        <div className="bg-black z-[2] opacity-40 overflow-scroll absolute top-0 h-screen w-full" />
+        <div className="flex flex-row overflow-x-scroll w-full">
+          <div className="flex-none w-screen h-screen grid grid-cols-2 grid-rows-2">
+            {slides.map((obj, id) => (
+              <div className="overflow-hidden">
+                <motion.img
+                  initial={{ scale: 1.15 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    ease: config.animations.speed,
+                    duration: 1.25,
+                  }}
+                  key={id} // Always use keys when rendering lists of elements in React
+                  className="w-full h-full object-cover"
+                  src={obj.img}
+                  alt={obj.name}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </main>
     </>
   );

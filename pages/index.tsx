@@ -2,29 +2,7 @@ import { useContext, useState } from "react";
 import Title from "../components/Title";
 import SContext from "../contexts/SContext";
 import { AnimatePresence, motion } from "framer-motion";
-import { config } from "../styles/global";
-import { v4 as uuidv4 } from "uuid";
-
-const arr: Slide[] = [
-  {
-    id: uuidv4(),
-    img: "/slider/1.png",
-    name: "Basement, Extensions & permits",
-    map: "6393 Cressy St, Creston, CA",
-  },
-  {
-    id: uuidv4(),
-    img: "/slider/2.png",
-    name: "Bathroom, Plumbing & french drains",
-    map: "1244 Boston St, Creston, LA",
-  },
-  {
-    id: uuidv4(),
-    img: "/slider/3.png",
-    name: "Bedroom, plastering & painting",
-    map: "9188 Goodwin St, Creston, NY",
-  },
-];
+import { config, slides } from "../styles/global";
 
 const Home = () => {
   const { ref } = useContext(SContext);
@@ -41,18 +19,18 @@ const Home = () => {
         className="will-change-scroll overflow-hidden relative"
       >
         <Pagination
-          arr={arr}
+          arr={slides}
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
         />
-        <TextLine />
+        {/* <TextLine /> */}
         <motion.div
           initial={{ scale: 1.25 }}
           animate={{ scale: 1 }}
           transition={{ ease: config.animations.speed, duration: 1.5 }}
           className="w-full h-screen"
         >
-          {arr.map((obj, id) => (
+          {slides.map((obj, id) => (
             <motion.p
               initial={{ y: 100, opacity: 0 }}
               animate={{
@@ -68,9 +46,9 @@ const Home = () => {
               {obj.map}
             </motion.p>
           ))}
-          <div className="absolute bg-black z-[2] opacity-50  h-screen w-full"></div>
+          <div className="absolute bg-black z-[2] opacity-40  h-screen w-full"></div>
           <Slider
-            arr={arr}
+            arr={slides}
             currentIndex={currentIndex}
             setCurrentIndex={setCurrentIndex}
           />
@@ -158,7 +136,6 @@ function Pagination({
     <motion.div
       initial={{ y: "100%" }}
       animate={{ y: "0%" }}
-      exit={{ y: "100%" }}
       transition={{
         ease: config.animations.speed,
         duration: 1.25,
@@ -173,7 +150,7 @@ function Pagination({
         }}
         className="w-full h-full flex  gap-3 justify-center items-center py-[.5em]"
       >
-        {arr.map((slide, index) => (
+        {slides.map((slide, index) => (
           <span
             key={slide.id}
             onClick={() => setCurrentIndex(index)} // Correctly using the index from the map function

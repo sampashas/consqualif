@@ -420,3 +420,30 @@ export const allProjects = [
     preview: "https://mdh-sepia.vercel.app/cases/mapa/mapa.png",
   },
 ];
+
+export const slides = [
+  {
+    id: uuidv4(),
+    img: "/slider/1.png",
+    name: "Basement, Extensions & permits",
+    map: "6393 Cressy St, Creston, CA",
+  },
+  {
+    id: uuidv4(),
+    img: "/slider/2.png",
+    name: "Bathroom, Plumbing & french drains",
+    map: "1244 Boston St, Creston, LA",
+  },
+  {
+    id: uuidv4(),
+    img: "/slider/3.png",
+    name: "Bedroom, plastering & painting",
+    map: "9188 Goodwin St, Creston, NY",
+  },
+  {
+    id: uuidv4(),
+    img: "/slider/1.png",
+    name: "Basement, Extensions & permits",
+    map: "6393 Cressy St, Creston, CA",
+  },
+];

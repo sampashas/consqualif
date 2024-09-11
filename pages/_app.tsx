@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       ) : (
         <div className="flex h-full flex-col relative">
           <Preview />
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="sync">
             <motion.div key={router.route} className="will-change-transform">
               <Component {...pageProps} />
             </motion.div>
