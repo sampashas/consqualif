@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Title from "../components/Title";
 import SContext from "../contexts/SContext";
 import { AnimatePresence, motion } from "framer-motion";
@@ -32,6 +32,7 @@ const Home = () => {
         >
           {slides.map((obj, id) => (
             <motion.p
+              key={obj.id}
               initial={{ y: 100, opacity: 0 }}
               animate={{
                 y: 0,
@@ -47,6 +48,7 @@ const Home = () => {
             </motion.p>
           ))}
           <div className="absolute bg-black z-[2] opacity-40  h-screen w-full"></div>
+          <Scroll />
           <Slider
             arr={slides}
             currentIndex={currentIndex}
@@ -57,6 +59,42 @@ const Home = () => {
     </>
   );
 };
+
+function Scroll() {
+  // Указываем, что реф это HTMLDivElement
+  const blueRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Получаем текущую позицию прокрутки
+      const scrollY = window.scrollY;
+      console.log("Current scroll position:", scrollY); // Вывод в консоль текущей позиции прокрутки
+
+      // Вычисляем новую позицию по вертикали
+      const newVerticalPosition = 90 - scrollY * 0.1; // Это значение можно настроить
+
+      // Применяем новую позицию трансформации
+      if (blueRef.current) {
+        blueRef.current.style.transform = `translateY(${newVerticalPosition}vh)`;
+      }
+    };
+
+    // Добавляем обработчик события прокрутки к окну
+    window.addEventListener("scroll", handleScroll);
+
+    // Функция очистки, которая будет вызываться при размонтировании компонента
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Пустой массив зависимостей означает, что эффект выполнится один раз после монтирования компонента
+
+  return (
+    <div
+      ref={blueRef}
+      className="absolute hidden bg-primary z-[2] h-screen w-full"
+    ></div>
+  );
+}
 
 function TextLine() {
   return (
