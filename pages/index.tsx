@@ -6,7 +6,6 @@ import { config, slides } from "../styles/global";
 
 const Home = () => {
   const { ref } = useContext(SContext);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <>
@@ -16,45 +15,10 @@ const Home = () => {
         data-scroll-id
         ref={ref}
         id="main-container"
-        className="will-change-scroll overflow-hidden relative"
+        className="will-change-scroll flex flex-col relative"
       >
-        <Pagination
-          arr={slides}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-        {/* <TextLine /> */}
-        <motion.div
-          initial={{ scale: 1.25 }}
-          animate={{ scale: 1 }}
-          transition={{ ease: config.animations.speed, duration: 1.5 }}
-          className="w-full h-screen"
-        >
-          {slides.map((obj, id) => (
-            <motion.p
-              key={obj.id}
-              initial={{ y: 100, opacity: 0 }}
-              animate={{
-                y: 0,
-                opacity: id === currentIndex ? 1 : 0,
-              }}
-              transition={{
-                ease: config.animations.speed,
-                duration: 1.5,
-              }}
-              className="absolute opacity-75 bottom-[5em] right-[2.5em] text-white z-[3]"
-            >
-              {obj.map}
-            </motion.p>
-          ))}
-          <div className="absolute bg-black z-[2] opacity-40  h-screen w-full"></div>
-          <Scroll />
-          <Slider
-            arr={slides}
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-          />
-        </motion.div>
+        <Hero />
+        {/* <Scroll /> */}
       </main>
     </>
   );
@@ -63,7 +27,6 @@ const Home = () => {
 function Scroll() {
   // Указываем, что реф это HTMLDivElement
   const blueRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const handleScroll = () => {
       // Получаем текущую позицию прокрутки
@@ -88,11 +51,34 @@ function Scroll() {
     };
   }, []); // Пустой массив зависимостей означает, что эффект выполнится один раз после монтирования компонента
 
+  return <div ref={blueRef} className="bg-primary z-[3] h-screen w-full"></div>;
+}
+
+function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
-    <div
-      ref={blueRef}
-      className="absolute hidden bg-primary z-[2] h-screen w-full"
-    ></div>
+    <>
+      <Pagination
+        arr={slides}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+      />
+      <motion.div
+        initial={{ scale: 1.25 }}
+        animate={{ scale: 1 }}
+        transition={{ ease: config.animations.speed, duration: 1.5 }}
+        className="w-full h-screen"
+      >
+        <Locate />
+        <div className="absolute bg-black z-[3] opacity-40 h-screen w-full"></div>
+        <Slider
+          arr={slides}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+        />
+      </motion.div>
+    </>
   );
 }
 
@@ -113,6 +99,30 @@ function TextLine() {
         </h2>
       </div>
     </motion.div>
+  );
+}
+
+function Locate({ currentIndex }: any) {
+  return (
+    <>
+      {slides.map((obj, id) => (
+        <motion.p
+          key={obj.id}
+          initial={{ y: 100, opacity: 0 }}
+          animate={{
+            y: 0,
+            opacity: id === currentIndex ? 1 : 0,
+          }}
+          transition={{
+            ease: config.animations.speed,
+            duration: 1.5,
+          }}
+          className="absolute opacity-75 bottom-[5em] right-[2.5em] text-white z-[3]"
+        >
+          {obj.map}
+        </motion.p>
+      ))}
+    </>
   );
 }
 
@@ -186,14 +196,14 @@ function Pagination({
           ease: config.animations.speed,
           duration: 1,
         }}
-        className="w-full h-full flex  gap-3 justify-center items-center py-[.5em]"
+        className="w-full h-full flex gap-3 justify-center items-center py-[.5em]"
       >
         {slides.map((slide, index) => (
           <span
             key={slide.id}
             onClick={() => setCurrentIndex(index)} // Correctly using the index from the map function
             className={`cursor-pointer duration-300 p-2 whitespace-nowrap px-4 rounded-lg ${
-              index === currentIndex ? "bg-[#fff2]" : "text-[#fff7]"
+              index === currentIndex ? "bg-[#000]" : "text-[#fff7]"
             }`}
           >
             {slide.name}
