@@ -71,7 +71,8 @@ function Hero() {
         className="w-full h-screen"
       >
         <Locate />
-        <div className="absolute bg-black z-[3] opacity-40 h-screen w-full"></div>
+        <TextLine />
+        <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
         <Slider
           arr={slides}
           currentIndex={currentIndex}
