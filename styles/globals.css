@@ -77,3 +77,21 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Scrollbar */
+/* Selector */
+::-webkit-scrollbar {
+  width: 0.25em;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: var(--primary);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--white);
+  border-radius: 10px;
+}
