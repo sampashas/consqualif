@@ -21,7 +21,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/_app.js",
-    "pages/index.jsx",
+    "pages/index.js",
     "components/Form/Input.tsx",
     "components/Form/Tag.tsx",
     "components/Form/Button.js",

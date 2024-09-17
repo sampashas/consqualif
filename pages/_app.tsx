@@ -36,14 +36,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       {loading ? (
         <Preloader />
       ) : (
-        <div className="flex h-full flex-col relative overflow-hidden">
+        <>
           <Preview />
           <AnimatePresence mode="sync">
             <motion.div key={router.route} className="will-change-transform">
               <Component {...pageProps} />
             </motion.div>
           </AnimatePresence>
-        </div>
+        </>
       )}
       <Cookie consentCookieName="userConsent" expires={365} />
     </SContext.Provider>

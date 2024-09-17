@@ -4,14 +4,9 @@ import { config, slides } from "../../styles/global";
 
 function Hero() {
   return (
-    <motion.div
-      initial={{ scale: 1.25 }}
-      animate={{ scale: 1 }}
-      transition={{ ease: config.animations.speed, duration: 1.5 }}
-      className="w-full h-screen"
-    >
+    <div className="h-screen overflow-hidden relative">
       <Content />
-    </motion.div>
+    </div>
   );
 }
 
