@@ -37,17 +37,22 @@ export default function Home() {
 
 const Section1 = ({ scrollYProgress }) => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, -5]);
 
   return (
-    <motion.div style={{ scale }} className="h-screen sticky top-0">
+    <motion.div style={{ scale, rotate }} className="h-screen sticky top-0">
       <Hero />
     </motion.div>
   );
 };
 
 const Section2 = ({ scrollYProgress }) => {
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [-5, 0]);
+
   return (
-    <div
+    <motion.div
+      style={{ scale, rotate }}
       className="relative h-screen overflow-hidden
     z-[4] bg-primary w-full flex flex-col justify-end items-center"
     >
@@ -55,6 +60,6 @@ const Section2 = ({ scrollYProgress }) => {
         <h2>What we offer</h2>
         <img className="w-fit" src="/about/bg-2.png" alt="" />
       </div>
-    </div>
+    </motion.div>
   );
 };
