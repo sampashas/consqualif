@@ -39,8 +39,8 @@ body {
 
 /* Изменение стиля выделения текста */
 ::selection {
-  background-color: var(--bg); /* цвет фона выделения */
-  color: var(--black); /* цвет текста при выделении */
+  background-color: var(--white); /* цвет фона выделения */
+  color: var(--primary); /* цвет текста при выделении */
 }
 
 /* divs */

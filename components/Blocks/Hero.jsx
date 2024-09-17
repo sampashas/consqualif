@@ -1,95 +1,44 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import Title from "../components/Title";
-import SContext from "../contexts/SContext";
-import { AnimatePresence, motion } from "framer-motion";
-import { config, slides } from "../styles/global";
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
+import { config, slides } from "../../styles/global";
 
-const Home = () => {
-  const { ref } = useContext(SContext);
-
+function Hero() {
   return (
-    <>
-      <Title title={config.global.title} />
-      <main
-        data-scroll-section
-        data-scroll-id
-        ref={ref}
-        id="main-container"
-        className="will-change-scroll flex flex-col relative"
-      >
-        <Hero />
-        <Scroll />
-      </main>
-    </>
-  );
-};
-
-function Scroll() {
-  const blueRef = useRef<HTMLDivElement>(null);
-  //   const handleScroll = () => {
-  //     // Получаем текущую позицию прокрутки
-  //     const scrollY = window.scrollY;
-  //     console.log("Current scroll position:", scrollY); // Вывод в консоль текущей позиции прокрутки
-
-  //     // Вычисляем новую позицию по вертикали
-  //     const newVerticalPosition = 90 - scrollY * 0.1; // Это значение можно настроить
-
-  //     // Применяем новую позицию трансформации
-  //     if (blueRef.current) {
-  //       blueRef.current.style.transform = `translateY(${newVerticalPosition}vh)`;
-  //     }
-  //   };
-
-  //   // Добавляем обработчик события прокрутки к окну
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   // Функция очистки, которая будет вызываться при размонтировании компонента
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
-
-  return (
-    <div
-      ref={blueRef}
-      className="bg-primary z-[3] h-screen w-full flex flex-col justify-end items-center"
+    <motion.div
+      initial={{ scale: 1.25 }}
+      animate={{ scale: 1 }}
+      transition={{ ease: config.animations.speed, duration: 1.5 }}
+      className="w-full h-screen"
     >
-      <div className="flex translate-y-[15em] gap-6 items-center flex-col">
-        <h2>What we offer</h2>
-        <img className="w-fit" src="/about/bg-2.png" alt="" />
-      </div>
-    </div>
+      <Content />
+    </motion.div>
   );
 }
 
-function Hero() {
+function Content() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
   return (
-    <div className="relative overflow-hidden">
+    <>
       <Pagination
         arr={slides}
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
       />
-      <motion.div
-        initial={{ scale: 1.25 }}
-        animate={{ scale: 1 }}
-        transition={{ ease: config.animations.speed, duration: 1.5 }}
-        className="w-full h-screen"
-      >
-        <Locate />
-        <TextLine />
-        <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
-        <Slider
-          arr={slides}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-      </motion.div>
-    </div>
+      <Locate />
+      <TextLine />
+      <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
+      <Slider
+        arr={slides}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+      />
+    </>
   );
 }
+
+// Menu
+// Menu
+// Menu
 
 function TextLine() {
   return (
@@ -117,7 +66,7 @@ function TextLine() {
   );
 }
 
-function Locate({ currentIndex }: any) {
+function Locate({ currentIndex }) {
   return (
     <>
       {slides.map((obj, id) => (
@@ -141,15 +90,7 @@ function Locate({ currentIndex }: any) {
   );
 }
 
-function Slider({
-  arr,
-  currentIndex,
-  setCurrentIndex,
-}: {
-  arr: Slide[];
-  currentIndex: number;
-  setCurrentIndex: (index: number | ((index: number) => number)) => void;
-}) {
+function Slider({ arr, currentIndex, setCurrentIndex }) {
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % arr.length);
   };
@@ -183,15 +124,7 @@ function Slider({
   );
 }
 
-function Pagination({
-  arr,
-  currentIndex,
-  setCurrentIndex,
-}: {
-  arr: Slide[];
-  currentIndex: number;
-  setCurrentIndex: (index: number) => void;
-}) {
+function Pagination({ arr, currentIndex, setCurrentIndex }) {
   // Calculating the percentage offset of the current index
   const offset = (currentIndex * 80) / arr.length;
 
@@ -204,7 +137,7 @@ function Pagination({
         duration: 1.25,
         delay: 1,
       }}
-      className="absolute overflow-hidden border-t-[1px] border-[#fff2] z-[4] bottom-0 left-0 right-0"
+      className="absolute overflow-hidden border-t-[1px] border-[#fff2] z-[3] bottom-0 left-0 right-0"
     >
       <motion.div
         transition={{
@@ -229,11 +162,4 @@ function Pagination({
   );
 }
 
-type Slide = {
-  id: string;
-  img: string;
-  name: string;
-  map: string;
-};
-
-export default Home;
+export default Hero;
