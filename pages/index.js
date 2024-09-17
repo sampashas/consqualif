@@ -1,10 +1,18 @@
 import { config } from "../styles/global";
 import Title from "../components/Title";
 import Hero from "../components/Blocks/Hero";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import { useScroll, useTransform, motion } from "framer-motion";
 
 export default function Home() {
+  const containerRef = useRef();
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -19,23 +27,25 @@ export default function Home() {
   return (
     <>
       <Title title={config.global.title} />
-      <main className="relative h-[200vh]">
-        <Section1 />
-        <Section2 />
+      <main ref={containerRef} className="relative h-[200vh]">
+        <Section1 scrollYProgress={scrollYProgress} />
+        <Section2 scrollYProgress={scrollYProgress} />
       </main>
     </>
   );
 }
 
-const Section1 = () => {
+const Section1 = ({ scrollYProgress }) => {
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+
   return (
-    <div className="h-screen sticky top-0">
+    <motion.div style={{ scale }} className="h-screen sticky top-0">
       <Hero />
-    </div>
+    </motion.div>
   );
 };
 
-const Section2 = () => {
+const Section2 = ({ scrollYProgress }) => {
   return (
     <div
       className="relative h-screen overflow-hidden
