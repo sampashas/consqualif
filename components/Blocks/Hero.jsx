@@ -20,7 +20,7 @@ function Content() {
         setCurrentIndex={setCurrentIndex}
       />
       <Locate />
-      <TextLine />
+      <TextLine currentIndex={currentIndex} />
       <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
       <Slider
         arr={slides}
@@ -35,16 +35,15 @@ function Content() {
 // Menu
 // Menu
 
-function TextLine() {
+function TextLine({ currentIndex }) {
   return (
     <div className="absolute w-full h-screen z-[3] flex items-center">
       <motion.div
         initial={{ scale: 1.2, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        animate={{ scale: 1, opacity: currentIndex >= 1 ? 0 : 1 }}
         transition={{
-          ease: config.animations.speed,
-          duration: 1.5,
-          delay: 1,
+          scale: { ease: config.animations.speed, duration: 1.5, delay: 1 },
+          opacity: { ease: config.animations.speed, duration: 1.5, delay: 2 },
         }}
         className="overflow-hidden"
       >
