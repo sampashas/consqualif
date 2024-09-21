@@ -99,12 +99,23 @@ function Locate({ currentIndex }) {
 // Slider
 
 function Slider({ arr, currentIndex, setCurrentIndex }) {
+  const [initialZoom, setInitialZoom] = useState(true);
+
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % arr.length);
   };
+
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev + arr.length - 1) % arr.length);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialZoom(false);
+    }, 1000); // Длительность совпадает с анимацией слайдов
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="relative flex flex-col items-center h-screen justify-center">
       <AnimatePresence mode="sync" custom={currentIndex}>
@@ -116,12 +127,21 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
           />
         </div>
         <motion.div
-          initial={{ opacity: 0.5, scale: 1, x: "100%" }}
-          animate={{ opacity: 1, scale: 1.1, x: "0%" }}
+          initial={
+            initialZoom
+              ? { opacity: 1, scale: 1.15, x: "0%" }
+              : { opacity: 0.5, scale: 1, x: "100%" }
+          }
+          animate={
+            initialZoom
+              ? { opacity: 1, scale: 1, x: "0%" }
+              : { opacity: 1, scale: 1.35, x: "0%" }
+          }
           exit={{ opacity: 0.5, scale: 1, x: "-100%" }}
           transition={{
             ease: config.animations.speed,
             duration: 1.75,
+            delay: initialZoom ? 0 : 0, // Добавлен delay для начального зума
           }}
           className="absolute w-full h-screen"
           key={currentIndex}
