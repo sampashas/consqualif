@@ -3,6 +3,7 @@ import useMobile from "../../hooks/useMobile";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { config } from "../../styles/global";
+import { v4 as uuidv4 } from "uuid";
 
 function Header() {
   return (
@@ -40,110 +41,61 @@ function MobileMenu() {
 }
 
 function LeftNav() {
+  const leftSide = [
+    { name: "Home", link: "/", id: uuidv4() },
+    { name: "Portfolio", link: "/portfolio", id: uuidv4() },
+    { name: "Service", link: "/service", id: uuidv4() },
+  ];
   return (
     <ul className="mn:hidden md:flex h-fit flex-1 gap-8">
-      <li className="overflow-hidden h-fit">
-        <Link href="/">
-          <motion.div
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{
-              ease: config.animations.speed,
-              duration: 1,
-              delay: 1.6,
-            }}
-          >
-            <span>Home</span>
-          </motion.div>
-        </Link>
-      </li>
-      <li className="overflow-hidden h-fit">
-        <Link href="/portfolio">
-          <motion.div
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{
-              ease: config.animations.speed,
-              duration: 1,
-              delay: 1.7,
-            }}
-          >
-            <span>Portfolio</span>
-          </motion.div>
-        </Link>
-      </li>
-      <li className="overflow-hidden h-fit">
-        <Link href="/service">
-          <motion.div
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{
-              ease: config.animations.speed,
-              duration: 1,
-              delay: 1.8,
-            }}
-          >
-            <span>Service</span>
-          </motion.div>
-        </Link>
-      </li>
+      {leftSide.map((obj, id) => (
+        <li className="overflow-hidden h-fit">
+          <Link href={obj.link}>
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{
+                ease: config.animations.speed,
+                duration: 1,
+                delay: 1.6 + id * 0.1,
+              }}
+            >
+              <span className="hover">{obj.name}</span>
+            </motion.div>
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 }
 function RightNav() {
+  const rightSide = [
+    { name: "About us", link: "/about", id: uuidv4() },
+    { name: "Jobs with", link: "/jobs", id: uuidv4() },
+    { name: "Contacts", link: "/contacts", id: uuidv4() },
+  ];
+
   return (
     <ul className="mn:hidden h-fit md:flex flex-1 gap-8 justify-end">
-      <li className="overflow-hidden h-fit">
-        <Link href="/about">
-          <motion.div
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{
-              ease: config.animations.speed,
-              duration: 1,
-              delay: 1.6,
-            }}
-          >
-            <span>About us</span>
-          </motion.div>
-        </Link>
-      </li>
-      <li className="overflow-hidden h-fit">
-        <Link href="/special">
-          <motion.div
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{
-              ease: config.animations.speed,
-              duration: 1,
-              delay: 1.7,
-            }}
-          >
-            <span>Jobs with</span>
-          </motion.div>
-        </Link>
-      </li>
-      <li className="overflow-hidden h-fit">
-        <Link href="/contacs">
-          <motion.div
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{
-              ease: config.animations.speed,
-              duration: 1,
-              delay: 1.8,
-            }}
-          >
-            <span>Contacts</span>
-          </motion.div>
-        </Link>
-      </li>
+      {rightSide.map((obj, id) => (
+        <li className="overflow-hidden h-fit">
+          <Link href={obj.link}>
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{
+                ease: config.animations.speed,
+                duration: 1,
+                delay: 1.6 + id * -0.1,
+              }}
+            >
+              <span className="hover">{obj.name}</span>
+            </motion.div>
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 }
