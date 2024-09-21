@@ -128,7 +128,7 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
         >
           <img
             src={arr[currentIndex].img}
-            className="object-cover h-screen w-full"
+            className="object-cover animate-zoom h-screen w-full"
           />
         </motion.div>
       </AnimatePresence>
