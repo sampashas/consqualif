@@ -442,7 +442,7 @@ export const slides = [
   },
   {
     id: uuidv4(),
-    img: "/slider/1.png",
+    img: "/slider/4.png",
     name: "Basement, Extensions & permits",
     map: "6393 Cressy St, Creston, CA",
   },
