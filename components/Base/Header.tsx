@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useMobile from "../../hooks/useMobile";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { config } from "../../styles/global";
 import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "next/router";
 
 function Header() {
   return (
@@ -46,10 +47,25 @@ function LeftNav() {
     { name: "Portfolio", link: "/portfolio", id: uuidv4() },
     { name: "Service", link: "/service", id: uuidv4() },
   ];
+
+  const route = useRouter();
+  const [activeLink, setActiveLink] = useState("");
+
+  useEffect(() => {
+    const currentPath = route.asPath;
+
+    const active = leftSide.find((obj) => obj.link === currentPath);
+    if (active) {
+      setActiveLink(active.link);
+    } else {
+      setActiveLink("");
+    }
+  }, [route.asPath]);
+
   return (
     <ul className="mn:hidden md:flex h-fit flex-1 gap-8">
       {leftSide.map((obj, id) => (
-        <li className="overflow-hidden h-fit">
+        <li className="overflow-hidden h-fit" key={obj.id}>
           <Link href={obj.link}>
             <motion.div
               initial={{ y: "100%" }}
@@ -62,6 +78,9 @@ function LeftNav() {
               }}
             >
               <span className="hover">{obj.name}</span>
+              {activeLink === obj.link && (
+                <div className="w-full h-[1px] bg-white" />
+              )}
             </motion.div>
           </Link>
         </li>
@@ -75,6 +94,20 @@ function RightNav() {
     { name: "Jobs with", link: "/jobs", id: uuidv4() },
     { name: "Contacts", link: "/contacts", id: uuidv4() },
   ];
+
+  const route = useRouter();
+  const [activeLink, setActiveLink] = useState("");
+
+  useEffect(() => {
+    const currentPath = route.asPath;
+
+    const active = rightSide.find((obj) => obj.link === currentPath);
+    if (active) {
+      setActiveLink(active.link);
+    } else {
+      setActiveLink("");
+    }
+  }, [route.asPath]);
 
   return (
     <ul className="mn:hidden h-fit md:flex flex-1 gap-8 justify-end">
@@ -91,7 +124,10 @@ function RightNav() {
                 delay: 1.6 + id * -0.1,
               }}
             >
-              <span className="hover">{obj.name}</span>
+              <span className="hover underline">{obj.name}</span>
+              {activeLink === obj.link && (
+                <div className="w-full h-[1px] bg-white" />
+              )}
             </motion.div>
           </Link>
         </li>
