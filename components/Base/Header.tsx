@@ -70,16 +70,17 @@ function LeftNav() {
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
-              exit={{ y: "100%" }}
               transition={{
                 ease: config.animations.speed,
                 duration: 1,
                 delay: 1.6 + id * 0.1,
               }}
             >
-              <span className="hover">{obj.name}</span>
+              <span className={`${activeLink === obj.link ? "" : "hover"} `}>
+                {obj.name}
+              </span>
               {activeLink === obj.link && (
-                <div className="w-full h-[1px] bg-white" />
+                <div className="w-full translate-y-[-.1em] h-[1px] bg-white" />
               )}
             </motion.div>
           </Link>
@@ -117,16 +118,17 @@ function RightNav() {
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
-              exit={{ y: "100%" }}
               transition={{
                 ease: config.animations.speed,
                 duration: 1,
                 delay: 1.6 + id * -0.1,
               }}
             >
-              <span className="hover underline">{obj.name}</span>
+              <span className={`${activeLink === obj.link ? "" : "hover"} `}>
+                {obj.name}
+              </span>
               {activeLink === obj.link && (
-                <div className="w-full h-[1px] bg-white" />
+                <div className="w-full translate-y-[-.1em] h-[1px] bg-white" />
               )}
             </motion.div>
           </Link>
