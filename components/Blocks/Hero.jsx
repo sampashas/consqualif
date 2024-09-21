@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { config, slides } from "../../styles/global";
 
 function Hero() {
@@ -107,9 +107,9 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
           />
         </div>
         <motion.div
-          initial={{ opacity: 0, scale: 1, x: "-100%" }}
-          animate={{ opacity: 1, scale: 1.15, x: "0%" }}
-          exit={{ opacity: 0, scale: 1, x: "100%" }}
+          initial={{ opacity: 0.5, scale: 1, x: "-100%" }}
+          animate={{ opacity: 1, scale: 1.1, x: "0%" }}
+          exit={{ opacity: 0.5, scale: 1, x: "100%" }}
           transition={{
             ease: config.animations.speed,
             duration: 1.75,
@@ -128,8 +128,21 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
 }
 
 function Pagination({ arr, currentIndex, setCurrentIndex }) {
-  // Calculating the percentage offset of the current index
-  const offset = (currentIndex * 80) / arr.length;
+  const containerRef = useRef(null);
+  const itemRefs = useRef([]);
+
+  // Рассчитываем смещение для того, чтобы текущий элемент оказался по центру
+  useEffect(() => {
+    if (containerRef.current && itemRefs.current[currentIndex]) {
+      const containerWidth = containerRef.current.offsetWidth;
+      const activeItem = itemRefs.current[currentIndex];
+      const activeItemOffset =
+        activeItem.offsetLeft + activeItem.offsetWidth / 2;
+      const offset = containerWidth / 2 - activeItemOffset;
+
+      containerRef.current.style.transform = `translateX(${offset}px)`;
+    }
+  }, [currentIndex, arr.length]);
 
   return (
     <motion.div
@@ -143,17 +156,19 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
       className="absolute overflow-hidden backdrop-blur-2xl z-[3] bottom-0 left-0 right-0"
     >
       <motion.div
+        ref={containerRef}
         transition={{
           ease: config.animations.speed,
           duration: 1,
         }}
-        className="w-full h-full flex gap-3 justify-center items-center py-[.5em]"
+        className="w-full h-full flex gap-3 justify-center items-center py-[.5em] whitespace-nowrap transition-transform duration-300"
       >
-        {slides.map((slide, index) => (
+        {arr.map((slide, index) => (
           <span
             key={slide.id}
-            onClick={() => setCurrentIndex(index)} // Correctly using the index from the map function
-            className={`cursor-pointer duration-300 p-2 whitespace-nowrap px-4 rounded-lg ${
+            ref={(el) => (itemRefs.current[index] = el)}
+            onClick={() => setCurrentIndex(index)}
+            className={`cursor-pointer duration-300 p-2 px-4 rounded-lg ${
               index === currentIndex ? "bg-[#fff2]" : "text-[#fff7]"
             }`}
           >
