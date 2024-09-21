@@ -73,7 +73,7 @@ function LeftNav() {
               transition={{
                 ease: config.animations.speed,
                 duration: 1,
-                delay: 1.6 + id * 0.1,
+                delay: 1.7 + id * 0.1,
               }}
             >
               <span className={`${activeLink === obj.link ? "" : "hover"} `}>
@@ -121,7 +121,7 @@ function RightNav() {
               transition={{
                 ease: config.animations.speed,
                 duration: 1,
-                delay: 1.6 + id * -0.1,
+                delay: 1.7 + id * -0.1,
               }}
             >
               <span className={`${activeLink === obj.link ? "" : "hover"} `}>

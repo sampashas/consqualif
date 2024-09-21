@@ -38,7 +38,16 @@ function Content() {
 function TextLine() {
   return (
     <div className="absolute w-full h-screen z-[3] flex items-center">
-      <div className="overflow-hidden">
+      <motion.div
+        initial={{ scale: 1.2, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          ease: config.animations.speed,
+          duration: 1.5,
+          delay: 1,
+        }}
+        className="overflow-hidden"
+      >
         <motion.div
           initial={{ y: 100, x: 100 }}
           animate={{ y: 0, x: 0 }}
@@ -56,7 +65,7 @@ function TextLine() {
             Experience luxurious construction & quality with us
           </h2>
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 }
