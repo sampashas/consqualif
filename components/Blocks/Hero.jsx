@@ -85,6 +85,10 @@ function Locate({ currentIndex }) {
   );
 }
 
+// Slider
+// Slider
+// Slider
+
 function Slider({ arr, currentIndex, setCurrentIndex }) {
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % arr.length);
