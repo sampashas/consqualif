@@ -107,9 +107,9 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
           />
         </div>
         <motion.div
-          initial={{ opacity: 0.5, scale: 1, x: "-100%" }}
+          initial={{ opacity: 0.5, scale: 1, x: "100%" }}
           animate={{ opacity: 1, scale: 1.1, x: "0%" }}
-          exit={{ opacity: 0.5, scale: 1, x: "100%" }}
+          exit={{ opacity: 0.5, scale: 1, x: "-100%" }}
           transition={{
             ease: config.animations.speed,
             duration: 1.75,
@@ -157,11 +157,8 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
     >
       <motion.div
         ref={containerRef}
-        transition={{
-          ease: config.animations.speed,
-          duration: 1,
-        }}
-        className="w-full h-full flex gap-3 justify-center items-center py-[.5em] whitespace-nowrap transition-transform duration-300"
+        transition={{ ease: config.animations.speed }}
+        className="w-full h-full flex gap-3 justify-center items-center py-[.5em] whitespace-nowrap ease-smooth-ease transition-transform duration-[1.75s]"
       >
         {arr.map((slide, index) => (
           <span

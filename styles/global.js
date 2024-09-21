@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 export const config = {
   global: {
     logo: "Pavel Z.",
-    title: "Consqualif",
+    title: "Consqualif – Building company",
   },
   animations: {
     speed: [0.77, 0, 0.175, 1],
