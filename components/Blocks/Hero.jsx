@@ -89,6 +89,44 @@ function Locate({ currentIndex }) {
 // Slider
 // Slider
 
+function Slider({ arr, currentIndex, setCurrentIndex }) {
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % arr.length);
+  };
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev + arr.length - 1) % arr.length);
+  };
+  return (
+    <div className="relative flex flex-col items-center h-screen justify-center">
+      <AnimatePresence mode="sync" custom={currentIndex}>
+        <div className="flex gap-12 absolute z-[20] left-0 top-0 bottom-0 right-0">
+          <div onClick={prevSlide} className="w-full h-screen cursor-pointer" />
+          <div
+            onClick={nextSlide}
+            className="w-full h-screen absolute cursor-pointer"
+          />
+        </div>
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: "0%" }}
+          exit={{ x: "-100%" }}
+          transition={{
+            ease: config.animations.speed,
+            duration: 1.55,
+          }}
+          className="absolute w-full h-screen"
+          key={currentIndex}
+        >
+          <img
+            src={arr[currentIndex].img}
+            className="object-cover h-screen w-full"
+          />
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function Pagination({ arr, currentIndex, setCurrentIndex }) {
   // Calculating the percentage offset of the current index
   const offset = (currentIndex * 80) / arr.length;
@@ -124,44 +162,6 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         ))}
       </motion.div>
     </motion.div>
-  );
-}
-
-function Slider({ arr, currentIndex, setCurrentIndex }) {
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % arr.length);
-  };
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev + arr.length - 1) % arr.length);
-  };
-  return (
-    <div className="relative flex flex-col items-center h-screen justify-center">
-      <AnimatePresence initial={false} custom={currentIndex}>
-        <div className="flex gap-12 absolute z-[20] left-0 top-0 bottom-0 right-0">
-          <div onClick={prevSlide} className="w-full h-screen cursor-pointer" />
-          <div
-            onClick={nextSlide}
-            className="w-full h-screen absolute cursor-pointer"
-          />
-        </div>
-        <motion.div
-          initial={{ x: "100%" }}
-          animate={{ x: "0%" }}
-          exit={{ x: "-100%" }}
-          transition={{
-            ease: config.animations.speed,
-            duration: 1.5,
-          }}
-          className="absolute w-full h-screen"
-          key={currentIndex}
-        >
-          <img
-            src={arr[currentIndex].img}
-            className="object-cover h-screen w-full"
-          />
-        </motion.div>
-      </AnimatePresence>
-    </div>
   );
 }
 
