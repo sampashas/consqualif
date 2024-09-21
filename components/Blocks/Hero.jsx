@@ -132,7 +132,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         duration: 1.25,
         delay: 1,
       }}
-      className="absolute overflow-hidden border-t-[1px] border-[#fff2] z-[3] bottom-0 left-0 right-0"
+      className="absolute overflow-hidden backdrop-blur-2xl z-[3] bottom-0 left-0 right-0"
     >
       <motion.div
         transition={{
@@ -146,7 +146,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
             key={slide.id}
             onClick={() => setCurrentIndex(index)} // Correctly using the index from the map function
             className={`cursor-pointer duration-300 p-2 whitespace-nowrap px-4 rounded-lg ${
-              index === currentIndex ? "bg-[#000]" : "text-[#fff7]"
+              index === currentIndex ? "bg-[#fff2]" : "text-[#fff7]"
             }`}
           >
             {slide.name}

@@ -36,23 +36,21 @@ export default function Home() {
 }
 
 const Section1 = ({ scrollYProgress }) => {
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, -5]);
+  const translateY = useTransform(scrollYProgress, [0, 1], [1, -100]);
 
   return (
-    <motion.div style={{ scale, rotate }} className="h-screen sticky top-0">
+    <motion.div style={{ translateY }} className="h-screen sticky top-0">
       <Hero />
     </motion.div>
   );
 };
 
 const Section2 = ({ scrollYProgress }) => {
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [-5, 0]);
+  const translateY = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
 
   return (
     <motion.div
-      style={{ scale, rotate }}
+      style={{ translateY }}
       className="relative h-screen overflow-hidden
     z-[4] bg-primary w-full flex flex-col justify-end items-center"
     >
