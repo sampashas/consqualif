@@ -107,12 +107,12 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
           />
         </div>
         <motion.div
-          initial={{ x: "100%" }}
-          animate={{ x: "0%" }}
-          exit={{ x: "-100%" }}
+          initial={{ opacity: 0, scale: 1, x: "-100%" }}
+          animate={{ opacity: 1, scale: 1.15, x: "0%" }}
+          exit={{ opacity: 0, scale: 1, x: "100%" }}
           transition={{
             ease: config.animations.speed,
-            duration: 1.55,
+            duration: 1.75,
           }}
           className="absolute w-full h-screen"
           key={currentIndex}
