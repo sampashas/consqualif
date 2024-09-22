@@ -283,14 +283,14 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         duration: 1.5,
         delay: 1,
       }}
-      className="absolute overflow-hidden z-[3] bottom-0 left-0 right-0"
+      className="absolute overflow-hidden z-[3] bottom-2 left-0 right-0"
     >
       <div className="relative">
         <motion.div
           ref={containerRef}
           className="
         transition-transform duration-[1.75s]
-        w-full h-full flex gap-3 justify-center items-center py-[.25em] whitespace-nowrap"
+        w-full h-full flex gap-4 justify-center items-center py-[.25em] whitespace-nowrap"
         >
           {arr.map((slide, index) => (
             <span
@@ -307,7 +307,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         </motion.div>
         <div
           style={{ width: currentIndex === 1 ? "22.5em" : "" }}
-          className="w-[20em] h-[3.25em] delay-[1.1s] duration-[1s] rounded-tl-lg rounded-tr-lg absolute bg-black z-[-1] bottom-0 right-0 left-1/2 -translate-x-1/2"
+          className="w-[20em] h-[3.25em] delay-[1.1s] duration-[1s] rounded-lg absolute bg-black z-[-1] bottom-0 right-0 left-1/2 -translate-x-1/2"
         ></div>
       </div>
     </motion.div>
