@@ -297,21 +297,21 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         duration: 1.5,
         delay: 1,
       }}
-      className="absolute overflow-hidden z-[21] bottom-2 left-0 right-0"
+      className="absolute z-[21] bottom-2 left-0 right-0"
     >
       <div className="relative">
         <motion.div
           ref={containerRef}
           className="
         transition-transform duration-[1.75s]
-        w-full h-full flex gap-4 justify-center items-center py-[.25em] whitespace-nowrap"
+        w-full h-full flex gap-4 justify-center items-center py-[.175em] whitespace-nowrap"
         >
           {arr.map((slide, index) => (
             <span
               key={slide.id}
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => setCurrentIndex(index)}
-              className={`cursor-pointer duration-300 hover:text-[#fff] p-[.4em] py-4 px-[.75em] rounded-lg ${
+              className={`cursor-pointer duration-500 hover:text-[#fff] p-[.4em] py-4 px-[.75em] rounded-lg ${
                 index === currentIndex ? "" : "text-[#fff7]"
               }`}
             >
