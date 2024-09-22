@@ -243,13 +243,26 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
         {arr.map((item, index) => (
           <div
             key={index}
-            className="w-full h-screen flex-shrink-0" // Каждое изображение занимает всю ширину экрана
+            className="w-full h-screen overflow-hidden flex-shrink-0"
           >
-            <img
-              src={item.img}
-              className="object-cover h-screen w-full"
-              alt={`Slide ${index}`}
-            />
+            <motion.div
+              initial={{ scale: 1.25 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 1.25 }}
+              transition={{
+                ease: config.animations.speed,
+                duration: 1.5,
+                delay: 1,
+              }}
+            >
+              <img
+                src={item.img}
+                className={`object-cover h-screen w-full 
+              ${index === currentIndex ? "animate-zoom" : ""}
+              `}
+                alt={`Slide ${index}`}
+              />
+            </motion.div>
           </div>
         ))}
       </motion.div>
