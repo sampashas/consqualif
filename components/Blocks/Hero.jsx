@@ -22,11 +22,79 @@ function Content() {
       <Locate />
       <TextLine currentIndex={currentIndex} />
       <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
+      <Slides currentIndex={currentIndex} />
       <Slider
         arr={slides}
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
       />
+    </>
+  );
+}
+
+function Slides({ currentIndex }) {
+  return (
+    <>
+      {currentIndex === 1 ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ delay: 3, ease: config.animations.speed }}
+          className="absolute z-[2] opacity-100 h-screen w-full"
+        >
+          <div className="w-full h-full relative">
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-15em] -translate-y-[5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+            </div>
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-5em] -translate-y-[7em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+            </div>
+          </div>
+        </motion.div>
+      ) : (
+        <></>
+      )}
+      {currentIndex === 2 ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ delay: 3, ease: config.animations.speed }}
+          className="absolute z-[2] opacity-100 h-screen w-full"
+        >
+          <div className="w-full h-full relative">
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-40em] -translate-y-[0em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+            </div>
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-5em] -translate-y-[7em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+            </div>
+          </div>
+        </motion.div>
+      ) : (
+        <></>
+      )}
+      {currentIndex === 3 ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ delay: 3, ease: config.animations.speed }}
+          className="absolute z-[2] opacity-100 h-screen w-full"
+        >
+          <div className="w-full h-full relative">
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-40em] -translate-y-[0em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+            </div>
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-5em] -translate-y-[7em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+            </div>
+          </div>
+        </motion.div>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
@@ -105,7 +173,7 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev + arr.length - 1) % arr.length);
+    setCurrentIndex((prev) => (prev - 1 + arr.length) % arr.length); // Здесь исправляем на -1
   };
 
   useEffect(() => {
@@ -119,10 +187,13 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
     <div className="relative flex flex-col items-center h-screen justify-center">
       <AnimatePresence mode="sync" custom={currentIndex}>
         <div className="flex gap-12 absolute z-[20] left-0 top-0 bottom-0 right-0">
-          <div onClick={prevSlide} className="w-full h-screen cursor-pointer" />
           <div
-            onClick={nextSlide}
-            className="w-full h-screen absolute cursor-pointer"
+            onClick={prevSlide} // Кликаем на левую часть экрана для переключения назад
+            className="w-1/2 h-screen cursor-pointer"
+          />
+          <div
+            onClick={nextSlide} // Кликаем на правую часть экрана для переключения вперед
+            className="w-1/2 h-screen cursor-pointer absolute right-0"
           />
         </div>
         <motion.div
