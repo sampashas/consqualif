@@ -36,10 +36,14 @@ export default function Home() {
 }
 
 const Section1 = ({ scrollYProgress }) => {
-  const translateY = useTransform(scrollYProgress, [0, 1], [1, -100]);
+  const translateY = useTransform(scrollYProgress, [0, 1], [1, -200]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.25]);
 
   return (
-    <motion.div style={{ translateY }} className="h-screen sticky top-0">
+    <motion.div
+      style={{ translateY, opacity }}
+      className="h-screen sticky top-0"
+    >
       <Hero />
     </motion.div>
   );

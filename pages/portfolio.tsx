@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Title from "../components/Title";
 import { config, slides } from "../styles/global";
 import { useState } from "react";
@@ -31,17 +31,18 @@ const Portfolio = () => {
                 key={id} // Always use keys when rendering lists of elements in React
                 onMouseEnter={() => handleMouseEnter(id)}
                 onMouseLeave={handleMouseLeave}
-                className="relative overflow-hidden"
+                className="relative flex justify-center items-center overflow-hidden"
               >
                 <p
-                  style={{ opacity: hoveredItem === id ? 1 : 0 }}
-                  className="absolute z-[2] bottom-[2em] left-[2em]"
+                  style={{ opacity: 1 }}
+                  className="text-white absolute text-center z-[2]"
                 >
-                  {obj.name}
+                  {obj.map}
                 </p>
                 <motion.img
                   initial={{ scale: 1.15 }}
                   animate={{ scale: 1 }}
+                  exit={{ scale: 1.15 }}
                   transition={{
                     ease: config.animations.speed,
                     duration: 1.25,

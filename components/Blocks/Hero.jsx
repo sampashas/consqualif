@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useState, useRef, useEffect } from "react";
 import { config, slides } from "../../styles/global";
 
@@ -292,6 +292,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
     <motion.div
       initial={{ y: "100%" }}
       animate={{ y: "0%" }}
+      exit={{ y: "100%" }}
       transition={{
         ease: config.animations.speed,
         duration: 1.5,
