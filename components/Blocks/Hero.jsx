@@ -39,12 +39,32 @@ function Content() {
 function Slides({ currentIndex }) {
   return (
     <>
+      {currentIndex === 0 ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ delay: 1, ease: config.animations.speed }}
+          className="absolute z-[2] opacity-100 h-screen w-full"
+        >
+          <div className="w-full h-full relative">
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-40em] -translate-y-[20em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+            </div>
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[44em] -translate-y-[-12.5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+            </div>
+          </div>
+        </motion.div>
+      ) : (
+        <></>
+      )}
       {currentIndex === 1 ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ delay: 3, ease: config.animations.speed }}
+          transition={{ delay: 1.25, ease: config.animations.speed }}
           className="absolute z-[2] opacity-100 h-screen w-full"
         >
           <div className="w-full h-full relative">
@@ -64,7 +84,7 @@ function Slides({ currentIndex }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ delay: 3, ease: config.animations.speed }}
+          transition={{ delay: 1, ease: config.animations.speed }}
           className="absolute z-[2] opacity-100 h-screen w-full"
         >
           <div className="w-full h-full relative">
@@ -94,7 +114,7 @@ function Slides({ currentIndex }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ delay: 3, ease: config.animations.speed }}
+          transition={{ delay: 1, ease: config.animations.speed }}
           className="absolute z-[2] opacity-100 h-screen w-full"
         >
           <div className="w-full h-full relative">
@@ -266,15 +286,17 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
       <motion.div
         ref={containerRef}
         transition={{ ease: config.animations.speed }}
-        className="w-full h-full flex gap-3 justify-center items-center py-[.5em] whitespace-nowrap ease-smooth-ease transition-transform duration-[1.75s]"
+        className="
+        ease-smooth-ease transition-transform duration-[1.75s]
+        w-full h-full flex gap-3 justify-center items-center py-[.25em] whitespace-nowrap"
       >
         {arr.map((slide, index) => (
           <span
             key={slide.id}
             ref={(el) => (itemRefs.current[index] = el)}
             onClick={() => setCurrentIndex(index)}
-            className={`cursor-pointer duration-300 p-2 px-4 rounded-lg ${
-              index === currentIndex ? "bg-[#fff2]" : "text-[#fff7]"
+            className={`cursor-pointer duration-300 p-[.4em] px-[.75em] rounded-lg ${
+              index === currentIndex ? "bg-primary" : "text-[#fff7]"
             }`}
           >
             {slide.name}
