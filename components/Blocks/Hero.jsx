@@ -321,7 +321,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         </motion.div>
         <div
           style={{ width: currentIndex === 1 ? "22.5em" : "" }}
-          className="w-[20em] h-[3.25em] delay-[1.1s] duration-[1s] rounded-lg absolute bg-black z-[-1] bottom-0 right-0 left-1/2 -translate-x-1/2"
+          className="w-[20em] h-[2.5em] delay-[1.1s] duration-[1s] rounded-lg absolute bg-black z-[-1] bottom-[.45em] right-0 left-1/2 -translate-x-1/2"
         ></div>
       </div>
     </motion.div>
