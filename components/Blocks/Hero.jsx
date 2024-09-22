@@ -48,10 +48,12 @@ function Slides({ currentIndex }) {
           className="absolute z-[2] opacity-100 h-screen w-full"
         >
           <div className="w-full h-full relative">
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-40em] -translate-y-[20em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-              <div className="animate-pulse w-3 h-3 bg-white rounded-full" />
+            <div className="absolute -translate-x-[-40em] -translate-y-[20em] animate-pulse top-1/2 left-1/2 w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center ">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <div className="animate-pulse bg-white w-3 h-3 rounded-full" />
+              </div>
             </div>
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[44em] -translate-y-[-12.5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+            <div className="absolute -translate-x-[44em] -translate-y-[-12.5em] animate-pulse top-1/2 left-1/2 w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center ">
               <div className="animate-pulse w-3 h-3 bg-white rounded-full" />
             </div>
           </div>
@@ -281,28 +283,33 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         duration: 1.5,
         delay: 1,
       }}
-      className="absolute overflow-hidden backdrop-blur-2xl z-[3] bottom-0 left-0 right-0"
+      className="absolute overflow-hidden z-[3] bottom-0 left-0 right-0"
     >
-      <motion.div
-        ref={containerRef}
-        transition={{ ease: config.animations.speed }}
-        className="
-        ease-smooth-ease transition-transform duration-[1.75s]
+      <div className="relative">
+        <motion.div
+          ref={containerRef}
+          className="
+        transition-transform duration-[1.75s]
         w-full h-full flex gap-3 justify-center items-center py-[.25em] whitespace-nowrap"
-      >
-        {arr.map((slide, index) => (
-          <span
-            key={slide.id}
-            ref={(el) => (itemRefs.current[index] = el)}
-            onClick={() => setCurrentIndex(index)}
-            className={`cursor-pointer duration-300 p-[.4em] px-[.75em] rounded-lg ${
-              index === currentIndex ? "bg-primary" : "text-[#fff7]"
-            }`}
-          >
-            {slide.name}
-          </span>
-        ))}
-      </motion.div>
+        >
+          {arr.map((slide, index) => (
+            <span
+              key={slide.id}
+              ref={(el) => (itemRefs.current[index] = el)}
+              onClick={() => setCurrentIndex(index)}
+              className={`cursor-pointer duration-300  p-[.4em] py-4 px-[.75em] rounded-lg ${
+                index === currentIndex ? "" : "text-[#fff7]"
+              }`}
+            >
+              {slide.name}
+            </span>
+          ))}
+        </motion.div>
+        <div
+          style={{ width: currentIndex === 1 ? "22.5em" : "" }}
+          className="w-[20em] h-[3.25em] delay-[1.1s] duration-[1s] rounded-tl-lg rounded-tr-lg absolute bg-black z-[-1] bottom-0 right-0 left-1/2 -translate-x-1/2"
+        ></div>
+      </div>
     </motion.div>
   );
 }
