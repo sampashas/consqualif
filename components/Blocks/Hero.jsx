@@ -49,10 +49,10 @@ function Slides({ currentIndex }) {
         >
           <div className="w-full h-full relative">
             <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-40em] -translate-y-[20em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+              <div className="animate-pulse w-3 h-3 bg-white rounded-full" />
             </div>
             <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[44em] -translate-y-[-12.5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+              <div className="animate-pulse w-3 h-3 bg-white rounded-full" />
             </div>
           </div>
         </motion.div>
