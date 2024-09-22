@@ -143,11 +143,12 @@ function TextLine({ currentIndex }) {
   return (
     <div className="absolute w-full h-screen z-[3] flex items-center">
       <motion.div
-        initial={{ scale: 1.2, opacity: 0 }}
+        initial={{ scale: 1.5, opacity: 0 }}
+        exit={{ scale: 1.5, opacity: 0 }}
         animate={{ scale: 1, opacity: currentIndex >= 1 ? 0 : 1 }}
         transition={{
-          scale: { ease: config.animations.speed, duration: 1.5, delay: 1 },
-          opacity: { ease: config.animations.speed, duration: 1.5, delay: 1 },
+          scale: { ease: config.animations.speed, duration: 1.5, delay: 1.1 },
+          opacity: { ease: config.animations.speed, duration: 1.5, delay: 1.1 },
         }}
         className="overflow-hidden"
       >
