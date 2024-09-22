@@ -10,6 +10,10 @@ function Hero() {
   );
 }
 
+// Grid
+// Grid
+// Grid
+
 function Content() {
   const [currentIndex, setCurrentIndex] = useState(0);
   return (
@@ -44,10 +48,10 @@ function Slides({ currentIndex }) {
           className="absolute z-[2] opacity-100 h-screen w-full"
         >
           <div className="w-full h-full relative">
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-15em] -translate-y-[5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-10em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
               <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
             </div>
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-5em] -translate-y-[7em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[30em] -translate-y-[-4em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
               <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
             </div>
           </div>
@@ -64,12 +68,22 @@ function Slides({ currentIndex }) {
           className="absolute z-[2] opacity-100 h-screen w-full"
         >
           <div className="w-full h-full relative">
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-40em] -translate-y-[0em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[30em] -translate-y-[-12.5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
               <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
             </div>
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-5em] -translate-y-[7em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
-            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 1,
+                ease: config.animations.speed,
+              }}
+            >
+              <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-35em] -translate-y-[5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+                <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       ) : (
@@ -84,10 +98,10 @@ function Slides({ currentIndex }) {
           className="absolute z-[2] opacity-100 h-screen w-full"
         >
           <div className="w-full h-full relative">
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-40em] -translate-y-[0em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-20em] -translate-y-[-7.5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
               <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
             </div>
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-5em] -translate-y-[7em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
+            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[35em] -translate-y-[0em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
               <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
             </div>
           </div>
@@ -200,8 +214,8 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
         initial={false} // Убираем начальную анимацию, так как управляем перемещением всего блока
         animate={{ x: calculateTranslateX() }} // Двигаем блок изображений
         transition={{
-          ease: "easeInOut",
-          duration: 1, // Длительность анимации
+          ease: config.animations.speed,
+          duration: 1.5, // Длительность анимации
         }}
       >
         {arr.map((item, index) => (
@@ -244,7 +258,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
       animate={{ y: "0%" }}
       transition={{
         ease: config.animations.speed,
-        duration: 1.25,
+        duration: 1.5,
         delay: 1,
       }}
       className="absolute overflow-hidden backdrop-blur-2xl z-[3] bottom-0 left-0 right-0"
