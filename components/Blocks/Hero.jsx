@@ -111,7 +111,7 @@ function TextLine({ currentIndex }) {
         animate={{ scale: 1, opacity: currentIndex >= 1 ? 0 : 1 }}
         transition={{
           scale: { ease: config.animations.speed, duration: 1.5, delay: 1 },
-          opacity: { ease: config.animations.speed, duration: 1.5, delay: 2 },
+          opacity: { ease: config.animations.speed, duration: 1.5, delay: 1 },
         }}
         className="overflow-hidden"
       >
@@ -166,62 +166,57 @@ function Locate({ currentIndex }) {
 // Slider
 
 function Slider({ arr, currentIndex, setCurrentIndex }) {
-  const [initialZoom, setInitialZoom] = useState(true);
+  const [direction, setDirection] = useState(1); // 1 - вправо, -1 - влево
 
   const nextSlide = () => {
+    setDirection(1); // Направление вправо
     setCurrentIndex((prev) => (prev + 1) % arr.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + arr.length) % arr.length); // Здесь исправляем на -1
+    setDirection(-1); // Направление влево
+    setCurrentIndex((prev) => (prev - 1 + arr.length) % arr.length);
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setInitialZoom(false);
-    }, 1000); // Длительность совпадает с анимацией слайдов
-    return () => clearTimeout(timer);
-  }, []);
+  const calculateTranslateX = () => {
+    // Расчет смещения контейнера в зависимости от текущего индекса
+    return `-${currentIndex * 100}%`;
+  };
 
   return (
-    <div className="relative flex flex-col items-center h-screen justify-center">
-      <AnimatePresence mode="sync" custom={currentIndex}>
-        <div className="flex gap-12 absolute z-[20] left-0 top-0 bottom-0 right-0">
+    <div className="relative flex items-center h-screen justify-center overflow-hidden">
+      <div className="flex gap-12 absolute z-[20] left-0 top-0 bottom-0 right-0">
+        <div
+          onClick={prevSlide} // Кликаем на левую часть экрана для переключения назад
+          className="w-1/2 h-screen cursor-pointer"
+        />
+        <div
+          onClick={nextSlide} // Кликаем на правую часть экрана для переключения вперед
+          className="w-1/2 h-screen cursor-pointer absolute right-0"
+        />
+      </div>
+      <motion.div
+        className="flex w-full h-screen"
+        initial={false} // Убираем начальную анимацию, так как управляем перемещением всего блока
+        animate={{ x: calculateTranslateX() }} // Двигаем блок изображений
+        transition={{
+          ease: "easeInOut",
+          duration: 1, // Длительность анимации
+        }}
+      >
+        {arr.map((item, index) => (
           <div
-            onClick={prevSlide} // Кликаем на левую часть экрана для переключения назад
-            className="w-1/2 h-screen cursor-pointer"
-          />
-          <div
-            onClick={nextSlide} // Кликаем на правую часть экрана для переключения вперед
-            className="w-1/2 h-screen cursor-pointer absolute right-0"
-          />
-        </div>
-        <motion.div
-          initial={
-            initialZoom
-              ? { opacity: 1, scale: 1.15, x: "0%" }
-              : { opacity: 0.5, scale: 1, x: "100%" }
-          }
-          animate={
-            initialZoom
-              ? { opacity: 1, scale: 1, x: "0%" }
-              : { opacity: 1, scale: 1.35, x: "0%" }
-          }
-          exit={{ opacity: 0.5, scale: 1, x: "-100%" }}
-          transition={{
-            ease: config.animations.speed,
-            duration: 1.75,
-            delay: initialZoom ? 0 : 0, // Добавлен delay для начального зума
-          }}
-          className="absolute w-full h-screen"
-          key={currentIndex}
-        >
-          <img
-            src={arr[currentIndex].img}
-            className="object-cover animate-zoom h-screen w-full"
-          />
-        </motion.div>
-      </AnimatePresence>
+            key={index}
+            className="w-full h-screen flex-shrink-0" // Каждое изображение занимает всю ширину экрана
+          >
+            <img
+              src={item.img}
+              className="object-cover h-screen w-full"
+              alt={`Slide ${index}`}
+            />
+          </div>
+        ))}
+      </motion.div>
     </div>
   );
 }
