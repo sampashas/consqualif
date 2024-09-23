@@ -1,11 +1,11 @@
 import React from "react";
 
-function service() {
+function jobs() {
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <span>Service</span>
+      <span>Jobs</span>
     </div>
   );
 }
 
-export default service;
+export default jobs;

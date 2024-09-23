@@ -1,11 +1,11 @@
 import React from "react";
 
-function service() {
+function about() {
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <span>Service</span>
+      <span>About</span>
     </div>
   );
 }
 
-export default service;
+export default about;
