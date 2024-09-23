@@ -65,7 +65,7 @@ function LeftNav() {
   return (
     <ul className="mn:hidden md:flex h-fit flex-1 gap-8">
       {leftSide.map((obj, id) => (
-        <li className="overflow-hidden h-fit" key={obj.id}>
+        <li className="overflow-hidden h-fit">
           <Link href={obj.link}>
             <motion.div
               initial={{ y: "100%" }}
@@ -73,7 +73,7 @@ function LeftNav() {
               transition={{
                 ease: config.animations.speed,
                 duration: 1,
-                delay: 1.7 + id * 0.1,
+                delay: 1.7 + id * -0.1,
               }}
             >
               <span className={`${activeLink === obj.link ? "" : "hover"} `}>

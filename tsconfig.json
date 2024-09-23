@@ -28,7 +28,8 @@
     "components/Form/Form.tsx",
     "components/Button.js",
     "components/MyProvider.js",
-    "components/Blocks/Hero.jsx"
+    "components/Blocks/Hero.jsx",
+    "pages/portfolio.js"
   ],
   "exclude": ["node_modules"]
 }
