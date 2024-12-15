@@ -24,13 +24,13 @@ const Portfolio = () => {
         className="will-change-scroll relative"
       >
         <div className="flex flex-row w-full">
-          <div className="flex-none w-full h-screen grid grid-cols-2 grid-rows-2">
+          <div className="flex-none w-full h-screen grid gap-2 p-2 grid-cols-2 grid-rows-2">
             {slides.map((obj, id) => (
               <div
                 key={id}
                 onMouseEnter={() => handleMouseEnter(id)} // Передаем индекс элемента
                 onMouseLeave={handleMouseLeave}
-                className="relative bg-black flex cursor-pointer justify-center items-center overflow-hidden"
+                className="relative rounded-2xl bg-black flex cursor-pointer justify-center items-center overflow-hidden"
               >
                 {hoveredItem === id && ( // Проверяем, совпадает ли наведение с текущим элементом
                   <motion.div
@@ -46,7 +46,7 @@ const Portfolio = () => {
                         ease: config.animations.speed,
                         duration: 0.5,
                       }}
-                      className="text-white w-full text-center z-[2] absolute"
+                      className="absolute z-[2] w-full text-white text-center"
                     >
                       {obj.map}
                     </motion.p>

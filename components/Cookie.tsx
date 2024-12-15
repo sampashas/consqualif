@@ -45,7 +45,7 @@ const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
           duration: 1.5,
           delay: 1.1,
         }}
-        className="bg-wh fixed md:w-fit md:bottom-3 mb-[0em] left-0 w-fit flex items-center gap-3 py-2 px-3 md:mx-3 md:rounded-xl bottom-0 border-wh15 border-[1px] rounded-xl backdrop:backdrop-blur-sm backdrop-blur-xl "
+        className="bg-wh fixed md:w-fit md:bottom-3 mb-[0em] left-0 w-fit flex items-center gap-3 py-2 pl-5 pr-2 md:mx-3 md:rounded-xl bottom-0 border-wh15 border-[1px] rounded-xl backdrop:backdrop-blur-sm backdrop-blur-xl "
       >
         <CookieText />
         <div className="flex items-end justify-end gap-2 md:w-full w-fit md:justify-center">
@@ -72,7 +72,6 @@ const CookieConsentBanner: React.FC<CookieConsentBannerProps> = ({
 function CookieText() {
   return (
     <div className="flex items-center md:flex-row flex-col w-full gap-2">
-      <span className="text-white">Cookies:</span>
       <p className="text-white  md:w-full whitespace-normal md:whitespace-nowrap text-sm opacity-75">
         This site uses cookies to provide for better user experience.
       </p>

@@ -24,7 +24,11 @@ function Content() {
         setCurrentIndex={setCurrentIndex}
       />
       <Locate />
-      <TextLine currentIndex={currentIndex} />
+      <div className="absolute z-[3] opacity-100 h-screen w-full flex justify-center items-center">
+        <h2 className="whitespace-nowrap w-fit text-white">Last projects</h2>
+      </div>
+
+      {/* <TextLine currentIndex={currentIndex} /> */}
       <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
       <Slides currentIndex={currentIndex} />
       <Slider
@@ -298,21 +302,21 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         duration: 1.5,
         delay: 1,
       }}
-      className="absolute z-[21] bottom-2 left-0 right-0"
+      className="absolute z-[21] bottom-0 left-0 right-0"
     >
       <div className="relative">
         <motion.div
           ref={containerRef}
           className="
-        transition-transform duration-[1.75s]
-        w-full h-full flex gap-4 justify-center items-center py-[.175em] whitespace-nowrap"
+        transition-transform duration-[1.75s] 
+        w-full h-full flex justify-center items-center py-[.25em] whitespace-nowrap"
         >
           {arr.map((slide, index) => (
             <span
               key={slide.id}
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => setCurrentIndex(index)}
-              className={`cursor-pointer duration-500 hover:text-[#fff] p-[.25em] py-3 px-[1.5em] border-l border-r border-wh30 rounded-sm 
+              className={`cursor-pointer duration-500 hover:text-[#fff] py-3 px-[2em] rounded-sm 
               ${index === currentIndex ? "" : "text-wh75"}
               `}
             >
@@ -320,10 +324,39 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
             </span>
           ))}
         </motion.div>
-        <div
-          style={{ width: currentIndex === 1 ? "22.75em" : "" }}
-          className="w-[20em] h-[2.5em] delay-[1.1s] duration-[1s] rounded-lg absolute bg-black z-[-1] bottom-[.25em] right-0 left-1/2 -translate-x-1/2"
-        ></div>
+        <div className="absolute flex h-[3em] justify-center items-end z-[-1] w-full top-0 right-0 left-1/2 delay-[1.1s] duration-[1s] -translate-x-1/2">
+          <svg
+            width="73"
+            height="35"
+            viewBox="0 0 73 35"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M72.2891 35H40.1858C57.4888 35 71.6577 21.2459 72.1717 3.95055L72.2891 0V35Z"
+              fill="#141519"
+            />
+          </svg>
+          <div
+            style={{
+              borderRadius: "60px 60px 0px 0px",
+              width: currentIndex === 1 ? "23.75em" : "",
+            }}
+            className="w-[21em] h-full bg-primary"
+          ></div>
+          <svg
+            width="73"
+            height="35"
+            viewBox="0 0 73 35"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.710938 35H32.8142C15.5112 35 1.34232 21.2459 0.828339 3.95055L0.710938 0V35Z"
+              fill="#141519"
+            />
+          </svg>
+        </div>
       </div>
     </motion.div>
   );

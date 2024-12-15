@@ -8,8 +8,8 @@ import { useRouter } from "next/router";
 
 function Header() {
   return (
-    <div className="z-[3] fixed myes pxes w-full">
-      <nav className="w-full md:pt-0 mn:pt-2 flex justify-between items-center">
+    <div className="z-[3] fixed my-0 pxes w-full">
+      <nav className="w-full myes md:pt-0 mn:pt-2 flex justify-between items-center">
         <LeftNav />
         <Link href="/">
           <Logo />
@@ -17,6 +17,40 @@ function Header() {
         <MobileMenu />
         <RightNav />
       </nav>
+      <div className="absolute flex h-[3em] justify-center items-start z-[-1] w-full top-0 right-0 left-1/2 border-t border-wh15 delay-[1.1s] duration-[1s] -translate-x-1/2">
+        <svg
+          width="67"
+          height="35"
+          viewBox="0 0 67 35"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="translate-x-[.1em]"
+        >
+          <path
+            d="M72.2891 0H40.1858C57.4888 0 71.6577 13.7541 72.1717 31.0495L72.2891 35V0Z"
+            fill="#141519"
+          />
+        </svg>
+        <div
+          style={{
+            borderRadius: "0px 0px 60px 60px",
+          }}
+          className="w-[21em] h-full bg-primary"
+        ></div>
+        <svg
+          width="67"
+          height="35"
+          viewBox="0 0 67 35"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="translate-x-[-.5em]"
+        >
+          <path
+            d="M0.710938 0H32.8142C15.5112 0 1.34232 13.7541 0.828339 31.0495L0.710938 35V0Z"
+            fill="#141519"
+          />
+        </svg>
+      </div>
     </div>
   );
 }
