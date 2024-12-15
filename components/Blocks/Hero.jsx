@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useState, useRef, useEffect } from "react";
 import { config, slides } from "../../styles/global";
+import gsap from "gsap";
 
 function Hero() {
   return (
@@ -12,7 +13,41 @@ function Hero() {
 
 function Title() {
   const title = "Last projects";
-  return <h2 className="whitespace-nowrap w-fit text-white">{title}</h2>;
+  const lettersRef = useRef([]);
+
+  useEffect(() => {
+    if (lettersRef.current) {
+      gsap.fromTo(
+        lettersRef.current,
+        { opacity: 0, y: 50 }, // Начальное состояние
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.05, // Интервал между анимацией букв
+          ease: "power3.out",
+        }
+      );
+    }
+  }, []);
+
+  return (
+    <motion.div
+      className="whitespace-nowrap w-fit text-white"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      {title.split("").map((char, index) => (
+        <h2
+          key={index}
+          className="inline-block"
+          ref={(el) => (lettersRef.current[index] = el)} // Сохраняем ссылки на буквы
+        >
+          {char === " " ? "\u00A0" : char}
+        </h2>
+      ))}
+    </motion.div>
+  );
 }
 
 // Grid
