@@ -33,26 +33,24 @@ const Portfolio = () => {
                 className="relative bg-black flex cursor-pointer justify-center items-center overflow-hidden"
               >
                 {hoveredItem === id && ( // Проверяем, совпадает ли наведение с текущим элементом
-                  <AnimatePresence mode="wait">
-                    <motion.div
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.75 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.75 }}
+                  >
+                    <motion.p
                       initial={{ opacity: 0, scale: 0.75 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.75 }}
+                      transition={{
+                        ease: config.animations.speed,
+                        duration: 0.5,
+                      }}
+                      className="text-white w-full text-center z-[2] absolute"
                     >
-                      <motion.p
-                        initial={{ opacity: 0, scale: 0.75 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.75 }}
-                        transition={{
-                          ease: config.animations.speed,
-                          duration: 0.5,
-                        }}
-                        className="text-white w-full text-center z-[2] absolute"
-                      >
-                        {obj.map}
-                      </motion.p>
-                    </motion.div>
-                  </AnimatePresence>
+                      {obj.map}
+                    </motion.p>
+                  </motion.div>
                 )}
                 <motion.img
                   initial={{ scale: 1.15 }}

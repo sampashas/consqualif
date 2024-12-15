@@ -312,17 +312,17 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
               key={slide.id}
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => setCurrentIndex(index)}
-              className={`cursor-pointer duration-500 hover:text-[#fff] p-[.4em] py-4 px-[.75em] rounded-lg ${
-                index === currentIndex ? "" : "text-[#fff7]"
-              }`}
+              className={`cursor-pointer duration-500 hover:text-[#fff] p-[.25em] py-3 px-[1.5em] border-l border-r border-wh30 rounded-sm 
+              ${index === currentIndex ? "" : "text-wh75"}
+              `}
             >
               {slide.name}
             </span>
           ))}
         </motion.div>
         <div
-          style={{ width: currentIndex === 1 ? "22.5em" : "" }}
-          className="w-[20em] h-[2.5em] delay-[1.1s] duration-[1s] rounded-lg absolute bg-black z-[-1] bottom-[.45em] right-0 left-1/2 -translate-x-1/2"
+          style={{ width: currentIndex === 1 ? "22.75em" : "" }}
+          className="w-[20em] h-[2.5em] delay-[1.1s] duration-[1s] rounded-lg absolute bg-black z-[-1] bottom-[.25em] right-0 left-1/2 -translate-x-1/2"
         ></div>
       </div>
     </motion.div>

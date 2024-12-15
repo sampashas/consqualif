@@ -19,12 +19,15 @@ body {
   --white: #ffffff;
   --wh: #ffffff00;
   --wh15: #ffffff15;
+  --wh30: #ffffff30;
   --wh50: #ffffff50;
+  --wh75: #ffffff75;
 
   /* neutral */
   --black: #000000;
   --bl15: #00000015;
   --bl50: #00000050;
+  --bl75: #00000075;
   --dark: #090809;
 
   /* vars */

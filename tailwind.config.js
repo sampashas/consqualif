@@ -15,12 +15,15 @@ module.exports = {
         /* white */
         white: "var(--white)",
         wh15: "var(--wh15)",
+        wh30: "var(--wh30)",
         wh50: "var(--wh50)",
+        wh75: "var(--wh75)",
         wh: "var(--wh)",
         /* neutral */
         black: "var(--black)",
         bl15: "var(--bl15)",
         bl50: "var(--bl50)",
+        bl75: "var(--bl75)",
         /* accent */
         primary: "var(--primary)",
       },
