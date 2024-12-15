@@ -28,7 +28,7 @@ body {
   --dark: #090809;
 
   /* vars */
-  --primary: #242638;
+  --primary: #141519;
 }
 
 * {
@@ -148,4 +148,15 @@ html.lenis body {
   opacity: 1;
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+/* Mouse */
+/* Mouse */
+/* Mouse */
+
+.mouse {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  transform: rotateX(var(--move-y)) rotateY(var(--move-x)) scale(1.05);
 }

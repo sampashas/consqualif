@@ -58,9 +58,9 @@ const Section2 = ({ scrollYProgress }) => {
       className="relative h-screen overflow-hidden
     z-[4] bg-primary w-full flex flex-col justify-end items-center"
     >
-      <div className="flex translate-y-[25%] gap-6 items-center flex-col">
+      <div className="flex translate-y-[35%] gap-6 items-center flex-col">
         <h2>What we offer</h2>
-        <img className="w-fit" src="/about/bg-2.png" alt="" />
+        <img className="w-fit" src="/we/1-team.png" alt="" />
       </div>
     </motion.div>
   );

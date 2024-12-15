@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 function Header() {
   return (
-    <div className="z-[3] fixed myes pxes w-full">
+    <div className="z-[3] fixed myes pxes w-full border-b pb-5 border-wh15">
       <nav className="w-full md:pt-0 mn:pt-2 flex justify-between items-center">
         <LeftNav />
         <Link href="/">
