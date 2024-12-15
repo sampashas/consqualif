@@ -17,7 +17,7 @@ function Header() {
         <MobileMenu />
         <RightNav />
       </nav>
-      <div className="absolute flex h-[3em] justify-center items-start z-[-1] w-full top-0 right-0 left-1/2 border-t border-wh15 delay-[1.1s] duration-[1s] -translate-x-1/2">
+      <div className="absolute flex h-[4em] justify-center items-start z-[-1] w-full top-0 right-0 left-1/2 border-t border-wh15 delay-[1.1s] duration-[1s] -translate-x-1/2">
         <svg
           width="67"
           height="35"
@@ -77,7 +77,7 @@ function MobileMenu() {
 
 function LeftNav() {
   const leftSide = [
-    { name: "Home", link: "/", id: uuidv4() },
+    { name: "Projects", link: "/", id: uuidv4() },
     { name: "Portfolio", link: "/portfolio", id: uuidv4() },
     { name: "Service", link: "/service", id: uuidv4() },
   ];
