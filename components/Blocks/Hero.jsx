@@ -330,6 +330,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
             height="35"
             viewBox="0 0 73 35"
             fill="none"
+            className="translate-x-[.5em]"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -349,6 +350,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
             height="35"
             viewBox="0 0 73 35"
             fill="none"
+            className="translate-x-[-.5em]"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
