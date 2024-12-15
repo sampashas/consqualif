@@ -10,6 +10,11 @@ function Hero() {
   );
 }
 
+function Title() {
+  const title = "Last projects";
+  return <h2 className="whitespace-nowrap w-fit text-white">{title}</h2>;
+}
+
 // Grid
 // Grid
 // Grid
@@ -25,7 +30,7 @@ function Content() {
       />
       <Locate />
       <div className="absolute z-[3] opacity-100 h-screen w-full flex justify-center items-center">
-        <h2 className="whitespace-nowrap w-fit text-white">Last projects</h2>
+        <Title />
       </div>
 
       {/* <TextLine currentIndex={currentIndex} /> */}
