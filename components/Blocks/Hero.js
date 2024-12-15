@@ -324,16 +324,6 @@ function Locate({ currentIndex }) {
 function Slider({ arr, currentIndex, setCurrentIndex }) {
   const [direction, setDirection] = useState(1); // 1 - вправо, -1 - влево
 
-  const nextSlide = () => {
-    setDirection(1); // Направление вправо
-    setCurrentIndex((prev) => (prev + 1) % arr.length);
-  };
-
-  const prevSlide = () => {
-    setDirection(-1); // Направление влево
-    setCurrentIndex((prev) => (prev - 1 + arr.length) % arr.length);
-  };
-
   const calculateTranslateX = () => {
     // Расчет смещения контейнера в зависимости от текущего индекса
     return `-${currentIndex * 100}%`;
@@ -341,16 +331,11 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
 
   return (
     <div className="relative flex items-center h-screen justify-center overflow-hidden">
-      <div className="flex gap-12 absolute z-[20] left-0 top-0 bottom-0 right-0">
-        <div
-          onClick={prevSlide} // Кликаем на левую часть экрана для переключения назад
-          className="w-1/2 h-screen cursor-pointer"
-        />
-        <div
-          onClick={nextSlide} // Кликаем на правую часть экрана для переключения вперед
-          className="w-1/2 h-screen cursor-pointer absolute right-0"
-        />
-      </div>
+      <SliderSides
+        setCurrentIndex={setCurrentIndex}
+        setDirection={setDirection}
+        arr={arr}
+      />
       <motion.div
         className="flex w-full h-screen"
         initial={false} // Убираем начальную анимацию, так как управляем перемещением всего блока
@@ -386,6 +371,30 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
           </div>
         ))}
       </motion.div>
+    </div>
+  );
+}
+
+function SliderSides({ setCurrentIndex, setDirection, arr }) {
+  const nextSlide = () => {
+    setDirection(1); // Направление вправо
+    setCurrentIndex((prev) => (prev + 1) % arr.length);
+  };
+
+  const prevSlide = () => {
+    setDirection(-1); // Направление влево
+    setCurrentIndex((prev) => (prev - 1 + arr.length) % arr.length);
+  };
+  return (
+    <div className="flex gap-12 absolute z-[20] left-0 top-0 bottom-0 right-0">
+      <div
+        onClick={prevSlide} // Кликаем на левую часть экрана для переключения назад
+        className="w-1/2 h-screen cursor-pointer"
+      />
+      <div
+        onClick={nextSlide} // Кликаем на правую часть экрана для переключения вперед
+        className="w-1/2 h-screen cursor-pointer absolute right-0"
+      />
     </div>
   );
 }
