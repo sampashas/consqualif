@@ -11,6 +11,7 @@ function Hero() {
   );
 }
 
+// Last projects
 function Title() {
   const title = "Last projects";
   const lettersRef = useRef([]);
@@ -24,6 +25,7 @@ function Title() {
           opacity: 1,
           y: 0,
           duration: 1,
+          delay: 1.5,
           stagger: 0.05, // Интервал между анимацией букв
           ease: "power3.out",
         }
@@ -50,6 +52,57 @@ function Title() {
   );
 }
 
+const AnimatedSvg = () => {
+  const svgRef = useRef(null);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+
+    // Анимация обводки для каждого элемента
+    gsap
+      .timeline()
+      .fromTo(
+        svg.querySelector("circle"),
+        { strokeDasharray: "0, 1000", strokeDashoffset: 0 },
+        { strokeDasharray: "1000, 1000", duration: 2, ease: "power2.inOut" }
+      )
+      .fromTo(
+        svg.querySelectorAll("path"),
+        { strokeDasharray: "0, 1000", strokeDashoffset: 0 },
+        {
+          strokeDasharray: "1000, 1000",
+          duration: 2.5,
+          ease: "power4.inOut",
+          stagger: 0.1,
+        },
+        "-=1.5"
+      );
+  }, []);
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="0 0 263 277"
+      fill="none"
+      className="w-[10em]"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="132.768" cy="113.747" r="113.247" stroke="white" />
+      <path
+        d="M205.703 120.56L178.917 98.2212V143.37L205.703 162.974V120.56Z"
+        fill="white"
+      />
+      <path d="M116.108 122.91L1.00006 212.729" stroke="white" />
+      <path
+        d="M129.86 113.219L261.147 212.729"
+        stroke="white"
+        strokeWidth="4"
+      />
+      <path d="M42.1396 200.432V275.695H219.121" stroke="white" />
+    </svg>
+  );
+};
+
 // Grid
 // Grid
 // Grid
@@ -64,7 +117,7 @@ function Content() {
         setCurrentIndex={setCurrentIndex}
       />
       <Locate />
-      <div className="absolute z-[3] opacity-100 h-screen w-full flex justify-center items-center">
+      <div className="absolute flex-col z-[3] opacity-100 h-screen w-full flex justify-center items-center">
         <Title />
       </div>
 
