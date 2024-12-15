@@ -4,6 +4,10 @@ import { config } from "../styles/global";
 import gsap from "gsap";
 
 function Preview() {
+  const mDelay = 2;
+  const nDelay = 2;
+  const tDelay = 1.5;
+
   return (
     <motion.div
       initial={{ y: "0%" }}
@@ -11,7 +15,7 @@ function Preview() {
       transition={{
         ease: config.animations.speed,
         duration: 1.25,
-        delay: 1,
+        delay: mDelay,
       }}
       className="absolute overflow-hidden w-full h-screen z-[3] bg-primary top-0 bottom-0 flex justify-center items-center"
     >
@@ -21,7 +25,7 @@ function Preview() {
         transition={{
           ease: config.animations.speed,
           duration: 1.25,
-          delay: 1,
+          delay: nDelay,
         }}
         className=""
       >
@@ -32,7 +36,7 @@ function Preview() {
           transition={{
             ease: config.animations.speed,
             duration: 1.25,
-            delay: 0.5,
+            delay: tDelay,
           }}
         >
           <svg
@@ -84,7 +88,11 @@ const AnimatedSvg = () => {
       .fromTo(
         svg.querySelector("circle"),
         { strokeDasharray: "0, 1000", strokeDashoffset: 0 },
-        { strokeDasharray: "1000, 1000", duration: 2, ease: "power2.inOut" }
+        {
+          strokeDasharray: "1000, 1000",
+          duration: 2,
+          ease: "power2.inOut",
+        }
       )
       .fromTo(
         svg.querySelectorAll("path"),

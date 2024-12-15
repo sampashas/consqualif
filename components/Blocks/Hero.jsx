@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 import React, { useState, useRef, useEffect } from "react";
 import { config, slides } from "../../styles/global";
 import gsap from "gsap";
@@ -12,26 +12,48 @@ function Hero() {
 }
 
 // Last projects
-function Title() {
+function Title({ sliderIndex }) {
   const title = "Last projects";
   const lettersRef = useRef([]);
+  const animationRef = useRef(null); // Для хранения GSAP анимации
 
   useEffect(() => {
-    if (lettersRef.current) {
-      gsap.fromTo(
-        lettersRef.current,
-        { opacity: 0, y: 50 }, // Начальное состояние
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          delay: 1.5,
-          stagger: 0.05, // Интервал между анимацией букв
-          ease: "power3.out",
-        }
-      );
-    }
+    // Создание анимации при монтировании
+    animationRef.current = gsap.timeline({ paused: true });
+    animationRef.current.fromTo(
+      lettersRef.current,
+      { opacity: 0, y: 50 }, // Начальное состояние
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 2,
+        stagger: 0.05,
+        ease: "power3.out",
+      }
+    );
+
+    animationRef.current.to(
+      lettersRef.current,
+      {
+        opacity: 0,
+        y: -50, // Увод вверх
+        duration: 1,
+        stagger: 0.05,
+        ease: "power3.in",
+      },
+      "+=0.5" // Задержка перед обратной анимацией
+    );
   }, []);
+
+  useEffect(() => {
+    // Контролируем направление анимации в зависимости от sliderIndex
+    if (sliderIndex === 1 || sliderIndex > 1) {
+      animationRef.current.reverse(); // Обратное воспроизведение
+    } else {
+      animationRef.current.play(); // Воспроизведение вперёд
+    }
+  }, [sliderIndex]);
 
   return (
     <motion.div
