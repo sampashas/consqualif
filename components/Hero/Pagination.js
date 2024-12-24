@@ -39,7 +39,14 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
           w-full h-full flex justify-center items-center py-[.25em] whitespace-nowrap"
         >
           {arr.map((slide, index) => (
-            <span
+            <motion.span
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{
+                ease: config.animations.speed,
+                duration: 1,
+                delay: 2 + index / 2.5,
+              }}
               key={slide.id}
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => setCurrentIndex(index)}
@@ -48,7 +55,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
                 `}
             >
               {slide.name}
-            </span>
+            </motion.span>
           ))}
         </motion.div>
         <Podlojka currentIndex={currentIndex} />
@@ -59,7 +66,16 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
 
 function Podlojka({ currentIndex }) {
   return (
-    <div className="absolute flex h-[4em] justify-center items-end z-[-1] w-full top-0 right-0 left-1/2 delay-[1.1s] duration-[1s] -translate-x-1/2">
+    <motion.div
+      initial={{ y: "100%" }}
+      animate={{ y: 0 }}
+      transition={{
+        ease: config.animations.speed,
+        duration: 1,
+        delay: 0.5,
+      }}
+      className="absolute flex h-[4em] justify-center items-end z-[-1] w-full top-0 right-0 delay-[1.1s] duration-[1s] -translate-x-1/2"
+    >
       <div
         style={{
           borderRadius: "60px 60px 0px 0px",
@@ -67,7 +83,7 @@ function Podlojka({ currentIndex }) {
         }}
         className="w-[21em] duration-500 delay-300 h-full bg-primary"
       ></div>
-    </div>
+    </motion.div>
   );
 }
 
