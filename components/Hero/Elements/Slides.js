@@ -25,15 +25,37 @@ function Slides({ currentIndex }) {
                 <div
                   key={elementIndex}
                   style={{ transform: element.translate }}
-                  className="absolute animate-pulse top-1/2 left-1/2 w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center"
+                  className="absolute animate-pulse top-1/2 left-1/2"
                   onMouseEnter={() => {
                     setHoveredIndex(elementIndex), console.log(elementIndex);
                   }}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    <div className="animate-pulse bg-white w-3 h-3 rounded-full" />
-                  </div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0.5 }}
+                    transition={{
+                      delay: 3,
+                      duration: 3,
+                      ease: config.animations.speed,
+                    }}
+                    className="
+                w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center relative
+                "
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0.5 }}
+                      transition={{
+                        delay: 2 + elementIndex,
+                        duration: 2,
+                        ease: config.animations.speed,
+                      }}
+                      className="animate-pulse bg-white w-3 h-3 rounded-full"
+                    />
+                  </motion.div>
                   {hoveredIndex === elementIndex && (
                     <div className="absolute top-full mt-2 w-max p-2 bg-white rounded-md shadow-lg">
                       <div className="w-full h-1 bg-black mb-2"></div>
