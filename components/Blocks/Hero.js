@@ -10,6 +10,32 @@ function Hero() {
     </div>
   );
 }
+// Grid
+function Content() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  return (
+    <>
+      <Pagination
+        arr={slides}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+      />
+      <Locate />
+      <div className="absolute flex-col z-[3] opacity-100 h-screen w-full flex justify-center items-center">
+        <Title />
+      </div>
+
+      {/* <TextLine currentIndex={currentIndex} /> */}
+      <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
+      <Slides currentIndex={currentIndex} />
+      <Slider
+        arr={slides}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+      />
+    </>
+  );
+}
 
 // Last projects
 function Title({ sliderIndex }) {
@@ -27,7 +53,7 @@ function Title({ sliderIndex }) {
         opacity: 1,
         y: 0,
         duration: 1,
-        delay: 2,
+        delay: 2.5,
         stagger: 0.05,
         ease: "power3.out",
       }
@@ -125,139 +151,85 @@ const AnimatedSvg = () => {
   );
 };
 
-// Grid
-// Grid
-// Grid
-
-function Content() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  return (
-    <>
-      <Pagination
-        arr={slides}
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-      />
-      <Locate />
-      <div className="absolute flex-col z-[3] opacity-100 h-screen w-full flex justify-center items-center">
-        <Title />
-      </div>
-
-      {/* <TextLine currentIndex={currentIndex} /> */}
-      <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
-      <Slides currentIndex={currentIndex} />
-      <Slider
-        arr={slides}
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-      />
-    </>
-  );
-}
-
 function Slides({ currentIndex }) {
+  const slidesData = [
+    {
+      delay: 1,
+      elements: [
+        {
+          translate: "translate3D(40em, -20em, 0)",
+        },
+        {
+          translate: "translate3D(-44em, 12.5em, 0)",
+        },
+      ],
+    },
+    {
+      delay: 1.25,
+      elements: [
+        { translate: "translate3D(20em, 10em, 0)" },
+        {
+          translate: "translate3D(-40em, 4em, 0)",
+        },
+      ],
+    },
+    {
+      delay: 1,
+      elements: [
+        {
+          translate: "translate3D(35em, -5em, 0)",
+        },
+        { translate: "translate3D(-30em, 12.5em, 0)" },
+      ],
+    },
+    {
+      delay: 1,
+      elements: [
+        {
+          translate: "translate3D(-35em, 0, 0)",
+        },
+        { translate: "translate3D(20em, 7.5em, 0)" },
+      ],
+    },
+  ];
+
   return (
     <>
-      {currentIndex === 0 ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ delay: 1, ease: config.animations.speed }}
-          className="absolute z-[2] opacity-100 h-screen w-full"
-        >
-          <div className="w-full h-full relative">
-            <div className="absolute -translate-x-[-40em] -translate-y-[20em] animate-pulse top-1/2 left-1/2 w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center ">
-              <div className="relative w-full h-full flex items-center justify-center">
-                <div className="animate-pulse bg-white w-3 h-3 rounded-full" />
-              </div>
-            </div>
-            <div className="absolute -translate-x-[44em] -translate-y-[-12.5em] animate-pulse top-1/2 left-1/2 w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center ">
-              <div className="animate-pulse w-3 h-3 bg-white rounded-full" />
-            </div>
-          </div>
-        </motion.div>
-      ) : (
-        <></>
-      )}
-      {currentIndex === 1 ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ delay: 1.25, ease: config.animations.speed }}
-          className="absolute z-[2] opacity-100 h-screen w-full"
-        >
-          <div className="w-full h-full relative">
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-10em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
-            </div>
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[30em] -translate-y-[-4em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
-            </div>
-          </div>
-        </motion.div>
-      ) : (
-        <></>
-      )}
-      {currentIndex === 2 ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ delay: 1, ease: config.animations.speed }}
-          className="absolute z-[2] opacity-100 h-screen w-full"
-        >
-          <div className="w-full h-full relative">
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[30em] -translate-y-[-12.5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
-            </div>
+      {slidesData.map(
+        (slide, index) =>
+          currentIndex === index && (
             <motion.div
+              key={index}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{
-                duration: 1,
+                delay: slide.delay,
                 ease: config.animations.speed,
               }}
+              className="absolute z-[2] opacity-100 h-screen w-full"
             >
-              <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-35em] -translate-y-[5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-                <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
+              <div className="w-full h-full relative">
+                {slide.elements.map((element, elementIndex) => (
+                  <div
+                    key={elementIndex}
+                    style={{ transform: element.translate }}
+                    className="absolute animate-pulse top-1/2 left-1/2 w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center"
+                  >
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <div className="animate-pulse bg-white w-3 h-3 rounded-full" />
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
-          </div>
-        </motion.div>
-      ) : (
-        <></>
-      )}
-      {currentIndex === 3 ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ delay: 1, ease: config.animations.speed }}
-          className="absolute z-[2] opacity-100 h-screen w-full"
-        >
-          <div className="w-full h-full relative">
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[-20em] -translate-y-[-7.5em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
-            </div>
-            <div className="animate-pulse top-1/2 left-1/2 transform -translate-x-[35em] -translate-y-[0em] w-12 h-12 bg-[#fff2]  rounded-full absolute flex justify-center items-center ">
-              <div className="w-3 animate-pulse h-3 bg-white rounded-full" />
-            </div>
-          </div>
-        </motion.div>
-      ) : (
-        <></>
+          )
       )}
     </>
   );
 }
 
 // Menu
-// Menu
-// Menu
-
 function TextLine({ currentIndex }) {
   return (
     <div className="absolute w-full h-screen z-[3] flex items-center">
@@ -318,9 +290,6 @@ function Locate({ currentIndex }) {
 }
 
 // Slider
-// Slider
-// Slider
-
 function Slider({ arr, currentIndex, setCurrentIndex }) {
   const [direction, setDirection] = useState(1); // 1 - вправо, -1 - влево
 
@@ -454,7 +423,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
             height="35"
             viewBox="0 0 73 35"
             fill="none"
-            className="translate-x-[.5em]"
+            className="translate-x-[.6em]"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -467,14 +436,14 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
               borderRadius: "60px 60px 0px 0px",
               width: currentIndex === 1 ? "23.75em" : "",
             }}
-            className="w-[21em] h-full bg-primary"
+            className="w-[21em] duration-500 delay-300 h-full bg-primary"
           ></div>
           <svg
             width="73"
             height="35"
             viewBox="0 0 73 35"
             fill="none"
-            className="translate-x-[-.5em]"
+            className="translate-x-[-.55em]"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
