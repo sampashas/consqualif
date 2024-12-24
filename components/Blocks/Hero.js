@@ -2,6 +2,7 @@ import { delay, motion } from "framer-motion";
 import React, { useState, useRef, useEffect } from "react";
 import { config, slides } from "../../styles/global";
 import gsap from "gsap";
+import Slides from "../Elements/Slides";
 
 function Hero() {
   return (
@@ -150,84 +151,6 @@ const AnimatedSvg = () => {
     </svg>
   );
 };
-
-function Slides({ currentIndex }) {
-  const slidesData = [
-    {
-      delay: 1,
-      elements: [
-        {
-          translate: "translate3D(40em, -20em, 0)",
-        },
-        {
-          translate: "translate3D(-44em, 12.5em, 0)",
-        },
-      ],
-    },
-    {
-      delay: 1.25,
-      elements: [
-        { translate: "translate3D(20em, 10em, 0)" },
-        {
-          translate: "translate3D(-40em, 4em, 0)",
-        },
-      ],
-    },
-    {
-      delay: 1,
-      elements: [
-        {
-          translate: "translate3D(35em, -5em, 0)",
-        },
-        { translate: "translate3D(-30em, 12.5em, 0)" },
-      ],
-    },
-    {
-      delay: 1,
-      elements: [
-        {
-          translate: "translate3D(-35em, 0, 0)",
-        },
-        { translate: "translate3D(20em, 7.5em, 0)" },
-      ],
-    },
-  ];
-
-  return (
-    <>
-      {slidesData.map(
-        (slide, index) =>
-          currentIndex === index && (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{
-                delay: slide.delay,
-                ease: config.animations.speed,
-              }}
-              className="absolute z-[2] opacity-100 h-screen w-full"
-            >
-              <div className="w-full h-full relative">
-                {slide.elements.map((element, elementIndex) => (
-                  <div
-                    key={elementIndex}
-                    style={{ transform: element.translate }}
-                    className="absolute animate-pulse top-1/2 left-1/2 w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center"
-                  >
-                    <div className="relative w-full h-full flex items-center justify-center">
-                      <div className="animate-pulse bg-white w-3 h-3 rounded-full" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          )
-      )}
-    </>
-  );
-}
 
 // Menu
 function TextLine({ currentIndex }) {

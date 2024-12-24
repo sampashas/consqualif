@@ -447,3 +447,46 @@ export const slides = [
     map: "6393 Cressy St, Creston, CA",
   },
 ];
+
+//
+// Slides
+export const slidesData = [
+  {
+    delay: 1,
+    elements: [
+      {
+        translate: "translate3D(40em, -20em, 0)",
+      },
+      {
+        translate: "translate3D(-44em, 12.5em, 0)",
+      },
+    ],
+  },
+  {
+    delay: 1.25,
+    elements: [
+      { translate: "translate3D(20em, 10em, 0)" },
+      {
+        translate: "translate3D(-40em, 4em, 0)",
+      },
+    ],
+  },
+  {
+    delay: 1,
+    elements: [
+      {
+        translate: "translate3D(35em, -5em, 0)",
+      },
+      { translate: "translate3D(-30em, 12.5em, 0)" },
+    ],
+  },
+  {
+    delay: 1,
+    elements: [
+      {
+        translate: "translate3D(-35em, 0, 0)",
+      },
+      { translate: "translate3D(20em, 7.5em, 0)" },
+    ],
+  },
+];
