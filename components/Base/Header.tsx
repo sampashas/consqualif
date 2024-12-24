@@ -24,14 +24,23 @@ function Header() {
 
 function Podlojka() {
   return (
-    <div className="absolute flex h-[4em] justify-center items-start z-[-1] w-full top-0 right-0 left-1/2 border-t border-wh15 delay-[1.1s] duration-[1s] -translate-x-1/2">
+    <motion.div
+      initial={{ y: "-100%" }}
+      animate={{ y: 0 }}
+      transition={{
+        ease: config.animations.speed,
+        duration: 1,
+        delay: 0.5,
+      }}
+      className="absolute flex h-[4em] justify-center items-start z-[-1] w-full top-0 right-0 border-t border-wh15 delay-[1.1s] duration-[1s] -translate-x-1/2"
+    >
       <div
         style={{
           borderRadius: "0px 0px 60px 60px",
         }}
         className="w-[21em] h-full bg-primary"
       ></div>
-    </div>
+    </motion.div>
   );
 }
 
