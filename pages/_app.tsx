@@ -10,7 +10,6 @@ import useLocoscroll from "../hooks/useLocoscroll";
 import Cookie from "../components/Cookie";
 import Preloader from "../components/Preloader";
 import Preview from "../components/Preview";
-import { config } from "../styles/global";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
