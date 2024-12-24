@@ -118,7 +118,7 @@ function LeftNav() {
     <>
       <ul className="mn:hidden md:flex h-fit flex-1 gap-8">
         {leftSide.map((obj, id) => (
-          <li className="overflow-hidden h-fit">
+          <li key={id} className="overflow-hidden h-fit">
             <Link href={obj.link}>
               <motion.div
                 initial={{ y: "100%" }}
@@ -167,7 +167,7 @@ function RightNav() {
   return (
     <ul className="mn:hidden h-fit md:flex flex-1 gap-8 justify-end">
       {rightSide.map((obj, id) => (
-        <li className="overflow-hidden h-fit">
+        <li key={id} className="overflow-hidden h-fit">
           <Link href={obj.link}>
             <motion.div
               initial={{ y: "100%" }}
