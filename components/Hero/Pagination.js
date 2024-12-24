@@ -51,43 +51,23 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
             </span>
           ))}
         </motion.div>
-        <div className="absolute flex h-[3em] justify-center items-end z-[-1] w-full top-0 right-0 left-1/2 delay-[1.1s] duration-[1s] -translate-x-1/2">
-          <svg
-            width="73"
-            height="35"
-            viewBox="0 0 73 35"
-            fill="none"
-            className="translate-x-[.6em]"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M72.2891 35H40.1858C57.4888 35 71.6577 21.2459 72.1717 3.95055L72.2891 0V35Z"
-              fill="#141519"
-            />
-          </svg>
-          <div
-            style={{
-              borderRadius: "60px 60px 0px 0px",
-              width: currentIndex === 1 ? "23.75em" : "",
-            }}
-            className="w-[21em] duration-500 delay-300 h-full bg-primary"
-          ></div>
-          <svg
-            width="73"
-            height="35"
-            viewBox="0 0 73 35"
-            fill="none"
-            className="translate-x-[-.55em]"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0.710938 35H32.8142C15.5112 35 1.34232 21.2459 0.828339 3.95055L0.710938 0V35Z"
-              fill="#141519"
-            />
-          </svg>
-        </div>
+        <Podlojka currentIndex={currentIndex} />
       </div>
     </motion.div>
+  );
+}
+
+function Podlojka({ currentIndex }) {
+  return (
+    <div className="absolute flex h-[4em] justify-center items-end z-[-1] w-full top-0 right-0 left-1/2 delay-[1.1s] duration-[1s] -translate-x-1/2">
+      <div
+        style={{
+          borderRadius: "60px 60px 0px 0px",
+          width: currentIndex === 1 ? "23.75em" : "",
+        }}
+        className="w-[21em] duration-500 delay-300 h-full bg-primary"
+      ></div>
+    </div>
   );
 }
 
