@@ -7,9 +7,9 @@ import "../styles/fonts.scss";
 import Header from "../components/Base/Header";
 import SContext from "../contexts/SContext";
 import useLocoscroll from "../hooks/useLocoscroll";
-import Cookie from "../components/Cookie";
-import Preloader from "../components/Preloader";
-import Preview from "../components/Preview";
+import Cookie from "../components/Base/Cookie";
+import Preloader from "../components/Extra/Preloader";
+import Preview from "../components/Extra/Preview";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import Title from "../components/Title";
+import Title from "../components/Base/Title";
 import { config, slides } from "../styles/global";
 import { useState } from "react";
 

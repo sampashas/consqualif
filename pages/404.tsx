@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { config } from "../styles/global";
 import Link from "next/link";
-import Title from "../components/Title";
+import Title from "../components/Base/Title";
 
 export default function Custom404() {
   const goBack = () => {

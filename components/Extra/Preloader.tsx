@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { contentItems, moreBlockItems } from "../assets/assets";
-import SContext from "../contexts/SContext";
+import { contentItems, moreBlockItems } from "../../assets/assets";
+import SContext from "../../contexts/SContext";
 import { motion } from "framer-motion";
-import { config } from "../styles/global";
+import { config } from "../../styles/global";
 
 const Preloader = () => {
   const [progress, setProgress] = useState<number>(0);

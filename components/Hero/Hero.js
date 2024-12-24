@@ -1,8 +1,9 @@
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useState, useRef, useEffect } from "react";
 import { config, slides } from "../../styles/global";
 import gsap from "gsap";
-import Slides from "../Elements/Slides";
+import Slides from "./Elements/Slides";
+import Pagination from "./Pagination";
 
 function Hero() {
   return (
@@ -101,93 +102,7 @@ function Title({ sliderIndex }) {
   );
 }
 
-const AnimatedSvg = () => {
-  const svgRef = useRef(null);
-
-  useEffect(() => {
-    const svg = svgRef.current;
-
-    // Анимация обводки для каждого элемента
-    gsap
-      .timeline()
-      .fromTo(
-        svg.querySelector("circle"),
-        { strokeDasharray: "0, 1000", strokeDashoffset: 0 },
-        { strokeDasharray: "1000, 1000", duration: 2, ease: "power2.inOut" }
-      )
-      .fromTo(
-        svg.querySelectorAll("path"),
-        { strokeDasharray: "0, 1000", strokeDashoffset: 0 },
-        {
-          strokeDasharray: "1000, 1000",
-          duration: 2.5,
-          ease: "power4.inOut",
-          stagger: 0.1,
-        },
-        "-=1.5"
-      );
-  }, []);
-
-  return (
-    <svg
-      ref={svgRef}
-      viewBox="0 0 263 277"
-      fill="none"
-      className="w-[10em]"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="132.768" cy="113.747" r="113.247" stroke="white" />
-      <path
-        d="M205.703 120.56L178.917 98.2212V143.37L205.703 162.974V120.56Z"
-        fill="white"
-      />
-      <path d="M116.108 122.91L1.00006 212.729" stroke="white" />
-      <path
-        d="M129.86 113.219L261.147 212.729"
-        stroke="white"
-        strokeWidth="4"
-      />
-      <path d="M42.1396 200.432V275.695H219.121" stroke="white" />
-    </svg>
-  );
-};
-
 // Menu
-function TextLine({ currentIndex }) {
-  return (
-    <div className="absolute w-full h-screen z-[3] flex items-center">
-      <motion.div
-        initial={{ scale: 1.5, opacity: 0 }}
-        exit={{ scale: 1.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: currentIndex >= 1 ? 0 : 1 }}
-        transition={{
-          scale: { ease: config.animations.speed, duration: 1.5, delay: 1.1 },
-          opacity: { ease: config.animations.speed, duration: 1.5, delay: 1.1 },
-        }}
-        className="overflow-hidden"
-      >
-        <motion.div
-          initial={{ y: 100, x: 100 }}
-          animate={{ y: 0, x: 0 }}
-          transition={{
-            ease: config.animations.speed,
-            duration: 1.5,
-            delay: 1,
-          }}
-          className="flex gap-6 animate-runner w-full h-48"
-        >
-          <h2 className="whitespace-nowrap">
-            Experience luxurious construction & quality with us –
-          </h2>
-          <h2 className="whitespace-nowrap">
-            Experience luxurious construction & quality with us
-          </h2>
-        </motion.div>
-      </motion.div>
-    </div>
-  );
-}
-
 function Locate({ currentIndex }) {
   return (
     <>
@@ -288,95 +203,6 @@ function SliderSides({ setCurrentIndex, setDirection, arr }) {
         className="w-1/2 h-screen cursor-pointer absolute right-0"
       />
     </div>
-  );
-}
-
-function Pagination({ arr, currentIndex, setCurrentIndex }) {
-  const containerRef = useRef(null);
-  const itemRefs = useRef([]);
-
-  // Рассчитываем смещение для того, чтобы текущий элемент оказался по центру
-  useEffect(() => {
-    if (containerRef.current && itemRefs.current[currentIndex]) {
-      const containerWidth = containerRef.current.offsetWidth;
-      const activeItem = itemRefs.current[currentIndex];
-      const activeItemOffset =
-        activeItem.offsetLeft + activeItem.offsetWidth / 2;
-      const offset = containerWidth / 2 - activeItemOffset;
-
-      containerRef.current.style.transform = `translateX(${offset}px)`;
-    }
-  }, [currentIndex, arr.length]);
-
-  return (
-    <motion.div
-      initial={{ y: "100%" }}
-      animate={{ y: "0%" }}
-      exit={{ y: "100%" }}
-      transition={{
-        ease: config.animations.speed,
-        duration: 1.5,
-        delay: 1,
-      }}
-      className="absolute z-[21] bottom-0 left-0 right-0"
-    >
-      <div className="relative">
-        <motion.div
-          ref={containerRef}
-          className="
-        transition-transform duration-[1.75s] 
-        w-full h-full flex justify-center items-center py-[.25em] whitespace-nowrap"
-        >
-          {arr.map((slide, index) => (
-            <span
-              key={slide.id}
-              ref={(el) => (itemRefs.current[index] = el)}
-              onClick={() => setCurrentIndex(index)}
-              className={`cursor-pointer duration-500 hover:text-[#fff] py-3 px-[2em] rounded-sm 
-              ${index === currentIndex ? "" : "text-wh75"}
-              `}
-            >
-              {slide.name}
-            </span>
-          ))}
-        </motion.div>
-        <div className="absolute flex h-[3em] justify-center items-end z-[-1] w-full top-0 right-0 left-1/2 delay-[1.1s] duration-[1s] -translate-x-1/2">
-          <svg
-            width="73"
-            height="35"
-            viewBox="0 0 73 35"
-            fill="none"
-            className="translate-x-[.6em]"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M72.2891 35H40.1858C57.4888 35 71.6577 21.2459 72.1717 3.95055L72.2891 0V35Z"
-              fill="#141519"
-            />
-          </svg>
-          <div
-            style={{
-              borderRadius: "60px 60px 0px 0px",
-              width: currentIndex === 1 ? "23.75em" : "",
-            }}
-            className="w-[21em] duration-500 delay-300 h-full bg-primary"
-          ></div>
-          <svg
-            width="73"
-            height="35"
-            viewBox="0 0 73 35"
-            fill="none"
-            className="translate-x-[-.55em]"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0.710938 35H32.8142C15.5112 35 1.34232 21.2459 0.828339 3.95055L0.710938 0V35Z"
-              fill="#141519"
-            />
-          </svg>
-        </div>
-      </div>
-    </motion.div>
   );
 }
 

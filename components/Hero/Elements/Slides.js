@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { config, slidesData } from "../../styles/global";
+import { config, slidesData } from "../../../styles/global";
 
 function Slides({ currentIndex }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);

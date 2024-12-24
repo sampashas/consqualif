@@ -1,4 +1,3 @@
-import { ContentBlock } from "../components/ContentBlocks";
 import { v4 as uuidv4 } from "uuid";
 
 // Content
@@ -19,7 +18,6 @@ export const contentItems = [
     id: uuidv4(),
     type: "block",
     name: "4_desktop_pages",
-    content: <ContentBlock />,
   },
 ];
 
@@ -41,6 +39,5 @@ export const moreBlockItems = [
     id: uuidv4(),
     type: "block",
     name: "4_desktop_pages",
-    content: <ContentBlock />,
   },
 ];

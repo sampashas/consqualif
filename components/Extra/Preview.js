@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { config } from "../styles/global";
+import { config } from "../../styles/global";
 import gsap from "gsap";
 
 function Preview() {

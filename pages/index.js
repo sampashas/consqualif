@@ -1,6 +1,6 @@
 import { config } from "../styles/global";
-import Title from "../components/Title";
-import Hero from "../components/Blocks/Hero";
+import Title from "../components/Base/Title";
+import Hero from "../components/Hero/Hero";
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { useScroll, useTransform, motion } from "framer-motion";

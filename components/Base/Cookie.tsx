@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getCookie, setCookie } from "../configs/cookieUtils";
+import { getCookie, setCookie } from "../../configs/cookieUtils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "react-feather";
-import { config } from "../styles/global";
+import { config } from "../../styles/global";
 
 interface CookieConsentBannerProps {
   consentCookieName: string;
