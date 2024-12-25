@@ -72,7 +72,7 @@ function Content({ displayedProgress }: { displayedProgress: any }) {
   return (
     <div className="flex h-full justify-center gap-3 flex-col items-center w-full">
       <div className="flex overflow-hidden w-fit justify-center items-center">
-        <motion.h4
+        <motion.h2
           initial={{ y: "10%" }}
           animate={{ y: loading ? "-100%" : 0 }}
           exit={{ y: "10%" }}
@@ -80,10 +80,9 @@ function Content({ displayedProgress }: { displayedProgress: any }) {
             ease: config.animations.speed,
             duration: 1,
           }}
-          className="uppercase opacity-50 tracking-[.25em] text-[1.5em]"
         >
           <b>{displayedProgress}</b>
-        </motion.h4>
+        </motion.h2>
       </div>
     </div>
   );

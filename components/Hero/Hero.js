@@ -41,7 +41,7 @@ function Content() {
 
 // Last projects
 function Title({ sliderIndex }) {
-  const title = "Last projects";
+  const title = "Our projects";
   const lettersRef = useRef([]);
   const animationRef = useRef(null); // Для хранения GSAP анимации
 
