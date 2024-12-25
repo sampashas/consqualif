@@ -5,13 +5,10 @@ import { motion } from "framer-motion";
 import { config } from "../../styles/global";
 
 const Preloader = () => {
-  const [progress, setProgress] = useState<number>(0);
-  const [stage, setStage] = useState<number>(1);
+  const [progress, setProgress] = useState(0);
+  const [stage, setStage] = useState(1);
 
-  const allAssets: Asset[] = [
-    ...(contentItems as Asset[]),
-    ...(moreBlockItems as Asset[]),
-  ];
+  const allAssets = [...contentItems, ...moreBlockItems];
 
   const { loading, setLoading } = useContext(SContext);
 
@@ -67,10 +64,10 @@ const Preloader = () => {
   );
 };
 
-function Content({ displayedProgress }: { displayedProgress: any }) {
+function Content({ displayedProgress }) {
   const { loading } = useContext(SContext);
   return (
-    <div className="flex h-full justify-center gap-3 flex-col items-center w-full">
+    <div className="flex h-full justify-end gap-3 flex-col items-start pl-12 pb-12 w-full">
       <div className="flex overflow-hidden w-fit justify-center items-center">
         <motion.h2
           initial={{ y: "10%" }}
@@ -87,39 +84,5 @@ function Content({ displayedProgress }: { displayedProgress: any }) {
     </div>
   );
 }
-
-function Percent({ displayedProgress }: { displayedProgress: any }) {
-  return (
-    <div
-      className={`flex ml-[${
-        displayedProgress - 10
-      }%] flex-col gap-6 h-full overflow-hidden hidden`}
-    >
-      <h2 className="font-bold tracking-[.015em]">{displayedProgress}%</h2>
-    </div>
-  );
-}
-
-interface BaseAsset {
-  id: string;
-  name: string;
-}
-
-interface ImageAsset extends BaseAsset {
-  type: "image";
-  url: string;
-}
-
-interface VideoAsset extends BaseAsset {
-  type: "video";
-  url: string;
-}
-
-interface BlockAsset extends BaseAsset {
-  type: "block";
-  content: JSX.Element;
-}
-
-type Asset = ImageAsset | VideoAsset | BlockAsset;
 
 export default Preloader;
