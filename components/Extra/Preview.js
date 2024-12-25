@@ -46,11 +46,13 @@ function Preview() {
 }
 
 function Content() {
+  const delay = 0;
+  const duration = 2;
   return (
     <>
-      <LeftSide />
+      <LeftSide delay={delay} duration={duration} />
       <AnimatedSvg />
-      <RightSide />
+      <RightSide delay={delay} duration={duration} />
     </>
   );
 }
@@ -116,7 +118,7 @@ const AnimatedSvg = () => {
   );
 };
 
-function LeftSide() {
+function LeftSide({ delay, duration }) {
   return (
     <div className="flex overflow-hidden">
       {Array.from("CONS").map((char, index) => (
@@ -126,8 +128,8 @@ function LeftSide() {
           animate={{ y: 0 }}
           className="font-[400]"
           transition={{
-            duration: 0.5,
-            delay: 1 + -index * 0.1, // Задержка для последовательной анимации
+            duration: duration,
+            delay: delay + -index * 0.15, // Задержка для последовательной анимации
             ease: config.animations.speed,
           }}
         >
@@ -138,7 +140,7 @@ function LeftSide() {
   );
 }
 
-function RightSide() {
+function RightSide({ delay, duration }) {
   return (
     <div className="flex overflow-hidden">
       {Array.from("UALIF").map((char, index) => (
@@ -147,8 +149,8 @@ function RightSide() {
           initial={{ y: "100%" }}
           animate={{ y: 0 }}
           transition={{
-            duration: 0.5,
-            delay: 1 + index * 0.1, // Задержка для последовательной анимации
+            duration: duration,
+            delay: delay + index * 0.15, // Задержка для последовательной анимации
             ease: config.animations.speed,
           }}
           className="font-[400]"
