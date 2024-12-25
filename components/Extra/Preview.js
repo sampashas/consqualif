@@ -39,12 +39,20 @@ function Preview() {
             delay: tDelay,
           }}
         >
-          <LeftSide />
-          <AnimatedSvg />
-          <RightSide />
+          <Content />
         </motion.div>
       </motion.div>
     </motion.div>
+  );
+}
+
+function Content() {
+  return (
+    <>
+      <LeftSide />
+      <AnimatedSvg />
+      <RightSide />
+    </>
   );
 }
 
