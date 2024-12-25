@@ -4,7 +4,7 @@ function Sides({ setCurrentIndex, setDirection, arr }) {
   useEffect(() => {
     const handleClick = (event) => {
       const { clientX } = event;
-      const windowWidth = window.innerWidth;
+      const windowWidth = window.innerWidth - 1000;
 
       // Условие для разделения экрана по ширине
       if (clientX < windowWidth / 2) {
