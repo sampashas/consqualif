@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import React, { useState, useRef, useEffect } from "react";
 import { config, slides } from "../../styles/global";
 import gsap from "gsap";
-import Slides from "./Elements/Slides";
+import Points from "./Elements/Points";
 import Pagination from "./Pagination";
+import Sides from "./Sides";
 
 function Hero() {
   return (
@@ -17,17 +18,17 @@ function Content() {
   const [currentIndex, setCurrentIndex] = useState(0);
   return (
     <>
-      <Locate />
+      <Points currentIndex={currentIndex} />
       <div className="absolute flex-col z-[3] opacity-100 h-screen w-full flex justify-center items-center">
         <Title />
       </div>
 
-      <Slides currentIndex={currentIndex} />
       <Pagination
         arr={slides}
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
       />
+
       <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
       <Slider
         arr={slides}
@@ -137,7 +138,7 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
 
   return (
     <div className="relative flex items-center h-screen justify-center overflow-hidden">
-      <SliderSides
+      <Sides
         setCurrentIndex={setCurrentIndex}
         setDirection={setDirection}
         arr={arr}
@@ -177,30 +178,6 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
           </div>
         ))}
       </motion.div>
-    </div>
-  );
-}
-
-function SliderSides({ setCurrentIndex, setDirection, arr }) {
-  const nextSlide = () => {
-    setDirection(1); // Направление вправо
-    setCurrentIndex((prev) => (prev + 1) % arr.length);
-  };
-
-  const prevSlide = () => {
-    setDirection(-1); // Направление влево
-    setCurrentIndex((prev) => (prev - 1 + arr.length) % arr.length);
-  };
-  return (
-    <div className="flex gap-12 absolute z-[20] left-0 top-0 bottom-0 right-0">
-      <div
-        onClick={prevSlide} // Кликаем на левую часть экрана для переключения назад
-        className="w-1/2 h-screen cursor-pointer"
-      />
-      <div
-        onClick={nextSlide} // Кликаем на правую часть экрана для переключения вперед
-        className="w-1/2 h-screen cursor-pointer absolute right-0"
-      />
     </div>
   );
 }
