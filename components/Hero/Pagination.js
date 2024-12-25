@@ -41,7 +41,10 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
           {arr.map((slide, index) => (
             <motion.span
               initial={{ y: "100%" }}
-              animate={{ y: 0 }}
+              animate={{
+                y: 0,
+                opacity: Math.abs(index - currentIndex) <= 1 ? 1 : 0.5,
+              }}
               transition={{
                 ease: config.animations.speed,
                 duration: 1,
@@ -78,10 +81,10 @@ function Podlojka({ currentIndex }) {
     >
       <div
         style={{
-          borderRadius: "60px 60px 0px 0px",
+          borderRadius: "8px 8px 0px 0px",
           width: currentIndex === 1 ? "23.75em" : "",
         }}
-        className="w-[21em] duration-500 delay-300 h-full bg-primary"
+        className="w-[19.5em] duration-500 delay-300 h-full bg-primary"
       ></div>
     </motion.div>
   );

@@ -36,9 +36,9 @@ function Podlojka() {
     >
       <div
         style={{
-          borderRadius: "0px 0px 60px 60px",
+          borderRadius: "0px 0px 8px 8px",
         }}
-        className="w-[21em] h-full bg-primary"
+        className="w-[19.5em] h-full bg-primary"
       ></div>
     </motion.div>
   );
