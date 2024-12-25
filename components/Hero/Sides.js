@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function Sides({ setCurrentIndex, setDirection, arr }) {
+  useEffect(() => {
+    const handleClick = (event) => {
+      const { clientX } = event;
+      const windowWidth = window.innerWidth;
+
+      // Условие для разделения экрана по ширине
+      if (clientX < windowWidth / 2) {
+        prevSlide(); // Левый клик
+      } else {
+        nextSlide(); // Правый клик
+      }
+    };
+
+    // Добавляем глобальный обработчик кликов
+    window.addEventListener("click", handleClick);
+
+    // Удаляем обработчик при размонтировании компонента
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
+  }, []);
+
   const nextSlide = () => {
     setDirection(1); // Направление вправо
     setCurrentIndex((prev) => (prev + 1) % arr.length);
@@ -10,18 +32,8 @@ function Sides({ setCurrentIndex, setDirection, arr }) {
     setDirection(-1); // Направление влево
     setCurrentIndex((prev) => (prev - 1 + arr.length) % arr.length);
   };
-  return (
-    <div className="flex gap-12 absolute z-[3] left-0 top-0 bottom-0 right-0">
-      <div
-        onClick={prevSlide} // Кликаем на левую часть экрана для переключения назад
-        className="w-1/2 h-screen cursor-pointer"
-      />
-      <div
-        onClick={nextSlide} // Кликаем на правую часть экрана для переключения вперед
-        className="w-1/2 h-screen cursor-pointer absolute right-0"
-      />
-    </div>
-  );
+
+  return <div />;
 }
 
 export default Sides;
