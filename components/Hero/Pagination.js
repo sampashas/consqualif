@@ -29,7 +29,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         duration: 1.5,
         delay: 1,
       }}
-      className="absolute z-[99] bottom-0 left-0 right-0"
+      className="absolute z-[21] bottom-0 left-0 right-0"
     >
       <div className="relative">
         <motion.div
