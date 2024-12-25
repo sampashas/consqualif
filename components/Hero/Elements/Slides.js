@@ -9,25 +9,20 @@ function Slides({ currentIndex }) {
     <>
       {slidesData.map((slide, index) =>
         currentIndex === index ? (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              delay: slide.delay,
-              ease: config.animations.speed,
-            }}
-            className="absolute z-[2] opacity-100 h-screen w-full"
-          >
+          <div key={index} className="absolute z-[3] h-screen w-full">
             <div className="w-full h-full relative">
               {slide.elements.map((element, elementIndex) => (
                 <div
                   key={elementIndex}
                   style={{ transform: element.translate }}
-                  className="absolute animate-pulse top-1/2 left-1/2"
+                  className="absolute hover:scale-150 animate-pulse top-1/2 left-1/2"
+                  onClick={(elementIndex) => {
+                    alert(`Вы нажали на элемент с индексом: ${elementIndex}`);
+                  }}
                   onMouseEnter={() => {
-                    setHoveredIndex(elementIndex), console.log(elementIndex);
+                    setHoveredIndex(elementIndex),
+                      console.log(elementIndex),
+                      console.dir;
                   }}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -67,7 +62,7 @@ function Slides({ currentIndex }) {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         ) : null
       )}
     </>

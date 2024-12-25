@@ -17,19 +17,18 @@ function Content() {
   const [currentIndex, setCurrentIndex] = useState(0);
   return (
     <>
-      <Pagination
-        arr={slides}
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-      />
       <Locate />
       <div className="absolute flex-col z-[3] opacity-100 h-screen w-full flex justify-center items-center">
         <Title />
       </div>
 
-      {/* <TextLine currentIndex={currentIndex} /> */}
-      <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
       <Slides currentIndex={currentIndex} />
+      <Pagination
+        arr={slides}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+      />
+      <div className="absolute bg-black z-[2] opacity-40 h-screen w-full"></div>
       <Slider
         arr={slides}
         currentIndex={currentIndex}
