@@ -74,7 +74,6 @@ function Points({ currentIndex }) {
 function Tooltip({ elementIndex }) {
   return (
     <div className="absolute top-full mt-2 w-max p-2 bg-white rounded-md shadow-lg">
-      <div className="w-full h-1 bg-black mb-2"></div>
       <span className="text-black text-sm">
         Hovered on element {elementIndex + 1}
       </span>
