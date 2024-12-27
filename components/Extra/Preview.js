@@ -66,6 +66,7 @@ const AnimatedSvg = () => {
     // Анимация обводки для каждого элемента
     gsap
       .timeline()
+
       .fromTo(
         svg.querySelector("circle"),
         { strokeDasharray: "0, 1000", strokeDashoffset: 0 },
@@ -85,6 +86,15 @@ const AnimatedSvg = () => {
           stagger: 0.1,
         },
         "-=1.5"
+      )
+      .fromTo(
+        svg.querySelector("#pipe"),
+        { strokeDasharray: "0, 1000", strokeDashoffset: 0 },
+        {
+          strokeDasharray: "1000, 1000",
+          duration: 2,
+          ease: "power2.inOut",
+        }
       );
   }, []);
 
@@ -96,11 +106,18 @@ const AnimatedSvg = () => {
       className="w-[10em] h-full"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="132.768" cy="113.747" r="113.247" stroke="white" />
+      <circle
+        className="opacity-50"
+        cx="132.768"
+        cy="113.747"
+        r="113.247"
+        stroke="white"
+      />
       <path
-        inf="pipe"
+        id="pipe"
         d="M205.703 120.56L178.917 98.2212V143.37L205.703 162.974V120.56Z"
-        fill="white"
+        stroke="white"
+        fill="none"
       />
       <path inf="roof" d="M116.108 122.91L1.00006 212.729" stroke="white" />
       <path

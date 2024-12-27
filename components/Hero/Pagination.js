@@ -81,7 +81,7 @@ function Podlojka({ currentIndex }) {
           borderRadius: "8px 8px 0px 0px",
           width: currentIndex === 1 ? "23.75em" : "",
         }}
-        className="w-[19.5em] duration-500 delay-300 h-full bg-primary"
+        className="w-[19.5em] duration-500 delay-300 h-full bg-[#fff1] backdrop:backdrop-blur-2xl backdrop-blur-xl"
       ></div>
     </motion.div>
   );

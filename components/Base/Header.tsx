@@ -32,13 +32,13 @@ function Podlojka() {
         duration: 1,
         delay: 0.5,
       }}
-      className="absolute flex h-[4em] justify-center items-start z-[-1] w-full top-0 right-0 border-t border-wh15 delay-[1.1s] duration-[1s] -translate-x-1/2"
+      className="absolute border-t border-wh15 flex h-[4em] justify-center items-start z-[-10] w-full top-0 right-0 delay-[1.1s] duration-[1s] -translate-x-1/2"
     >
       <div
         style={{
           borderRadius: "0px 0px 8px 8px",
         }}
-        className="w-[19.5em] h-full bg-primary"
+        className="w-[19.5em] h-full bg-wh backdrop:backdrop-blur-2xl backdrop-blur-xl"
       ></div>
     </motion.div>
   );
