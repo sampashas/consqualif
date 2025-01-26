@@ -68,7 +68,7 @@ function LeftNav() {
   const leftSide = [
     { name: "Projects", link: "/", id: uuidv4() },
     { name: "Portfolio", link: "/portfolio", id: uuidv4() },
-    { name: "Service", link: "/service", id: uuidv4() },
+    // { name: "Service", link: "/service", id: uuidv4() },
   ];
 
   const route = useRouter();
@@ -116,8 +116,8 @@ function LeftNav() {
 }
 function RightNav() {
   const rightSide = [
-    { name: "About us", link: "/about", id: uuidv4() },
-    { name: "Jobs with", link: "/jobs", id: uuidv4() },
+    // { name: "About us", link: "/about", id: uuidv4() },
+    // { name: "Jobs with", link: "/jobs", id: uuidv4() },
     { name: "Contacts", link: "/contacts", id: uuidv4() },
   ];
 

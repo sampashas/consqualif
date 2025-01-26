@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { config, slidesData } from "../../../styles/global";
 
 function Points({ currentIndex }) {
@@ -20,7 +20,7 @@ function Points({ currentIndex }) {
                   style={{ transform: element.translate }}
                   className="absolute animate-pulse top-1/2 left-1/2"
                   onClick={() => {
-                    alert(`Вы нажали на элемент с индексом: `);
+                    alert(`Вы нажали на элемент с индексом: ${elementIndex}`);
                   }}
                   onMouseEnter={() => {
                     setHoveredIndex(elementIndex);
@@ -36,13 +36,13 @@ function Points({ currentIndex }) {
                     }}
                     exit={{ scale: 0.5 }}
                     transition={{
-                      delay: hoveredIndex === elementIndex ? 0 : 3, // Убираем задержку при ховере
+                      delay: hoveredIndex === elementIndex ? 0 : 3,
                       duration: 3,
                       ease: config.animations.speed,
                     }}
                     className="
-                w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center relative
-                "
+                      w-12 h-12 bg-[#fff2] rounded-full flex justify-center items-center relative
+                    "
                   >
                     <motion.div
                       initial={{ scale: 0 }}
@@ -50,7 +50,7 @@ function Points({ currentIndex }) {
                       exit={{ scale: 0.5 }}
                       transition={{
                         delay:
-                          hoveredIndex === elementIndex ? 0 : 2 + elementIndex, // Убираем задержку при ховере
+                          hoveredIndex === elementIndex ? 0 : 2 + elementIndex,
                         duration:
                           hoveredIndex === elementIndex ? 0 : 2 + elementIndex,
                         ease: config.animations.speed,
@@ -58,9 +58,15 @@ function Points({ currentIndex }) {
                       className="animate-pulse bg-white w-3 h-3 rounded-full"
                     />
                   </motion.div>
-                  {hoveredIndex === elementIndex && (
-                    <Tooltip elementIndex={elementIndex} />
-                  )}
+                  <AnimatePresence>
+                    {hoveredIndex === elementIndex && (
+                      <Tooltip
+                        key={`tooltip-${elementIndex}-${hoveredIndex}`}
+                        elementIndex={elementIndex}
+                        isHovered={hoveredIndex === elementIndex}
+                      />
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
             </div>
@@ -71,13 +77,32 @@ function Points({ currentIndex }) {
   );
 }
 
-function Tooltip({ elementIndex }) {
+function Tooltip({ elementIndex, isHovered }) {
   return (
-    <div className="absolute top-full mt-2 w-max p-2 bg-white rounded-md shadow-lg">
-      <span className="text-black text-sm">
+    <motion.div
+      key={`tooltip-motion-${elementIndex}`}
+      initial={{ opacity: 0, y: -10 }}
+      animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={
+        isHovered
+          ? {
+              delay: 0,
+              duration: 0.3,
+              ease: "easeOut",
+            }
+          : {
+              delay: 0.3,
+              duration: 0.5,
+              ease: config.animations.speed,
+            }
+      }
+      className="absolute z-[100] top-full mt-2 w-max p-2 rounded-md bg-white backdrop:backdrop-blur-2xl backdrop-blur-xl"
+    >
+      <span className="mix-blend-difference text-sm">
         Hovered on element {elementIndex + 1}
       </span>
-    </div>
+    </motion.div>
   );
 }
 
