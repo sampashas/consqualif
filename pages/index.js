@@ -3,15 +3,12 @@ import Title from "../components/Base/Title";
 import Hero from "../components/Hero/Hero";
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
 
 export default function Home() {
   const containerRef = useRef();
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  const imageRef = useRef(); // Реф для изображения
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -22,45 +19,64 @@ export default function Home() {
     }
 
     requestAnimationFrame(raf);
+
+    // GSAP Timeline for sequential animations
+    const timeline = gsap.timeline({ paused: true });
+
+    // First section animation
+    timeline.to(".section-1", { y: -200, opacity: 0.25, duration: 1 });
+
+    // Second section remains fixed as a background
+    timeline.to(".section-2", { opacity: 1, duration: 1 }, "-=0.5");
+
+    // Image animation
+    timeline.to(imageRef.current, { y: -200, duration: 1 }, "-=0.5");
+
+    // Trigger timeline on scroll
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const maxScroll = containerRef.current.scrollHeight - window.innerHeight;
+      const progress = scrollTop / maxScroll;
+      timeline.progress(progress);
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
     <>
       <Title title={config.global.title} />
-      <main ref={containerRef} className="relative h-[200vh]">
-        <Section1 scrollYProgress={scrollYProgress} />
-        <Section2 scrollYProgress={scrollYProgress} />
+      <main ref={containerRef} className="relative h-[300vh]">
+        <Section1 />
+        <Section2 imageRef={imageRef} />
       </main>
     </>
   );
 }
 
-const Section1 = ({ scrollYProgress }) => {
-  const translateY = useTransform(scrollYProgress, [0, 1], [1, -200]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.25]);
-
+const Section1 = () => {
   return (
-    <motion.div
-      style={{ translateY, opacity }}
-      className="h-screen sticky top-0"
-    >
+    <motion.div className="section-1 h-screen sticky top-0 flex justify-center items-center">
       <Hero />
     </motion.div>
   );
 };
 
-const Section2 = ({ scrollYProgress }) => {
-  const translateY = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-
+const Section2 = ({ imageRef }) => {
   return (
-    <motion.div
-      style={{ translateY }}
-      className="relative h-screen overflow-hidden
-    z-[4] bg-primary w-full flex flex-col justify-end items-center"
-    >
+    <motion.div className="section-2 h-screen sticky top-0 overflow-hidden z-[4] bg-primary w-full flex flex-col justify-end items-center">
       <div className="flex translate-y-[35%] gap-6 items-center flex-col">
         <h2>What we offer</h2>
-        <img className="w-fit" src="/we/1-team.png" alt="" />
+        <img
+          ref={imageRef} // Реф для изображения
+          className="w-fit"
+          src="/we/1-team.png"
+          alt="Team"
+        />
       </div>
     </motion.div>
   );
