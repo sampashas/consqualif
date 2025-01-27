@@ -20,19 +20,16 @@ export default function Home() {
 
     requestAnimationFrame(raf);
 
-    // GSAP Timeline for sequential animations
+    // Таймлайн GSAP для последовательных анимаций
     const timeline = gsap.timeline({ paused: true });
 
-    // First section animation
+    // Анимация первой секции
     timeline.to(".section-1", { y: -200, opacity: 0.25, duration: 1 });
+    timeline.to(".section-2", { opacity: 1, duration: 1 });
+    timeline.to(imageRef.current, { y: "-60%", duration: 1 });
+    timeline.to(imageRef.current, { scale: 0.8, duration: 1 });
 
-    // Second section remains fixed as a background
-    timeline.to(".section-2", { opacity: 1, duration: 1 }, "-=0.5");
-
-    // Image animation
-    timeline.to(imageRef.current, { y: -200, duration: 1 }, "-=0.5");
-
-    // Trigger timeline on scroll
+    // Запуск таймлайна при скролле
     const onScroll = () => {
       const scrollTop = window.scrollY;
       const maxScroll = containerRef.current.scrollHeight - window.innerHeight;

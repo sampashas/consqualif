@@ -9,7 +9,6 @@ const Preloader = () => {
   const [stage, setStage] = useState(1);
 
   const allAssets = [...contentItems, ...moreBlockItems];
-
   const { loading, setLoading } = useContext(SContext);
 
   useEffect(() => {

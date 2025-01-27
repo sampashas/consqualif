@@ -137,13 +137,13 @@ const AnimatedSvg = () => {
 
 function LeftSide({ delay, duration }) {
   return (
-    <div className="flex overflow-hidden">
+    <div className="flex gap-1 overflow-hidden">
       {Array.from("CONS").map((char, index) => (
         <motion.h2
           key={index}
           initial={{ y: "100%" }}
           animate={{ y: 0 }}
-          className="font-[400]"
+          className="font-[300]"
           transition={{
             duration: duration,
             delay: delay + -index * 0.15, // Задержка для последовательной анимации
@@ -159,7 +159,7 @@ function LeftSide({ delay, duration }) {
 
 function RightSide({ delay, duration }) {
   return (
-    <div className="flex overflow-hidden">
+    <div className="flex gap-1 overflow-hidden">
       {Array.from("UALIF").map((char, index) => (
         <motion.h2
           key={index}
@@ -170,7 +170,7 @@ function RightSide({ delay, duration }) {
             delay: delay + index * 0.15, // Задержка для последовательной анимации
             ease: config.animations.speed,
           }}
-          className="font-[400]"
+          className="font-[300]"
         >
           {char}
         </motion.h2>
