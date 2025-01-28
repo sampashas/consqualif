@@ -67,8 +67,7 @@ function LeftNav() {
           key={id}
           className="
             duration-300
-            border hover:border-b-wh50 border-wh15
-            py-[1.1em] flex justify-center
+            py-[1.15em] flex justify-center
             overflow-hidden w-full"
         >
           <Link href={obj.link}>
@@ -83,7 +82,7 @@ function LeftNav() {
             >
               <span>{obj.name}</span>
               {activeLink === obj.link && (
-                <div className="w-[47px] absolute h-[47px] blur-xl bg-white" />
+                <div className="w-[47px] opacity-50 absolute h-[47px] blur-xl bg-white" />
               )}
             </motion.div>
           </Link>
@@ -120,7 +119,7 @@ function RightNav() {
           className="
           duration-300
           border hover:border-b-wh50 border-wh15
-          py-[1.1em] flex justify-center
+          py-[1.15em] flex justify-center
           overflow-hidden w-full"
         >
           <Link href={obj.link}>

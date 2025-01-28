@@ -35,8 +35,8 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         <motion.div
           ref={containerRef}
           className="
-          transition-transform duration-[1.75s] 
-          w-full h-full flex justify-center items-center py-[.25em] whitespace-nowrap"
+          transition-transform duration-[1.75s]
+          w-full h-full flex justify-center items-center whitespace-nowrap"
         >
           {arr.map((slide, index) => (
             <motion.span
@@ -50,15 +50,22 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
               key={slide.id}
               ref={(el) => (itemRefs.current[index] = el)}
               onClick={() => setCurrentIndex(index)}
-              className={`cursor-pointer duration-500 hover:text-[#fff] py-3 px-[2em] rounded-sm 
-                ${index === currentIndex ? "" : "text-wh75"}
+              className={`
+              hover:text-[#fff] 
+              duration-300 cursor-pointer
+              border hover:border-t-wh50 border-wh15
+              py-[1.15em] px-[2em] bg-wh overflow-hidden
+              flex justify-center rounded-sm 
+                ${index === currentIndex ? "bg-wh" : "text-wh75"}
                 `}
             >
               {slide.name}
+              {currentIndex === index && (
+                <div className="opacity-75 -mt-10 absolute w-[47px] h-[47px] blur-xl bg-white" />
+              )}
             </motion.span>
           ))}
         </motion.div>
-        <Podlojka currentIndex={currentIndex} />
       </div>
     </motion.div>
   );
@@ -78,10 +85,14 @@ function Podlojka({ currentIndex }) {
     >
       <div
         style={{
-          borderRadius: "8px 8px 0px 0px",
           width: currentIndex === 1 ? "23.75em" : "",
         }}
-        className="w-[19.5em] duration-500 delay-300 h-full bg-[#fff1] backdrop:backdrop-blur-2xl backdrop-blur-xl"
+        className="
+        w-full delay-300 h-full
+        duration-300
+        border hover:border-b-wh50 border-wh15
+        py-[1.1em] flex justify-center
+        "
       ></div>
     </motion.div>
   );

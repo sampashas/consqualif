@@ -24,7 +24,12 @@ export default function Home() {
     const timeline = gsap.timeline({ paused: true });
 
     // Анимация первой секции
-    timeline.to(".section-1", { y: -200, opacity: 0.25, duration: 1 });
+    timeline.to(".section-1", {
+      scale: 1.25,
+      y: -200,
+      opacity: 0.25,
+      duration: 1,
+    });
     timeline.to(".section-2", { opacity: 1, duration: 1 });
     timeline.to(imageRef.current, { y: "-60%", duration: 1 });
     timeline.to(imageRef.current, { scale: 0.8, duration: 1 });
