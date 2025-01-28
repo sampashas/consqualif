@@ -67,7 +67,6 @@ function MobileMenu() {
 function LeftNav() {
   const leftSide = [
     { name: "Intro", link: "/", id: uuidv4() },
-    { name: "We are", link: "/case", id: uuidv4() },
     { name: "Cases", link: "/case", id: uuidv4() },
   ];
 
@@ -116,8 +115,7 @@ function LeftNav() {
 }
 function RightNav() {
   const rightSide = [
-    // { name: "About us", link: "/about", id: uuidv4() },
-    // { name: "Jobs with", link: "/jobs", id: uuidv4() },
+    { name: "We are", link: "/case", id: uuidv4() },
     { name: "Contacts", link: "/contacts", id: uuidv4() },
   ];
 
