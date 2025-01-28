@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 function Header() {
   return (
     <div className="z-[3] fixed pxes w-full">
-      <nav className="w-full flex justify-between gap-4 items-center">
+      <nav className="w-full mn:pt-6 md:pt-0 flex justify-between gap-4 items-center">
         <LeftNav />
         <Link href="/">
           <Logo />
@@ -66,7 +66,7 @@ function LeftNav() {
         <li
           key={id}
           className="
-            duration-300
+            duration-300 bg-[#ffffff05]
             py-[1.15em] flex justify-center
             overflow-hidden w-full"
         >
@@ -82,7 +82,7 @@ function LeftNav() {
             >
               <span>{obj.name}</span>
               {activeLink === obj.link && (
-                <div className="w-[47px] opacity-50 absolute h-[47px] blur-xl bg-white" />
+                <div className="w-[47px] absolute h-[47px] blur-xl bg-white" />
               )}
             </motion.div>
           </Link>
@@ -93,7 +93,7 @@ function LeftNav() {
 }
 function RightNav() {
   const rightSide = [
-    { name: "We are", link: "/case", id: uuidv4() },
+    { name: "We are", link: "/about", id: uuidv4() },
     { name: "Contacts", link: "/contacts", id: uuidv4() },
   ];
 
@@ -118,7 +118,7 @@ function RightNav() {
           key={id}
           className="
           duration-300
-          border hover:border-b-wh50 border-wh15
+          bg-[#ffffff05]
           py-[1.15em] flex justify-center
           overflow-hidden w-full"
         >
@@ -134,7 +134,7 @@ function RightNav() {
             >
               <span>{obj.name}</span>
               {activeLink === obj.link && (
-                <div className="w-full translate-y-[-.1em] h-[1px] bg-white" />
+                <div className="w-[47px] opacity-50 absolute h-[47px] blur-xl bg-white" />
               )}
             </motion.div>
           </Link>

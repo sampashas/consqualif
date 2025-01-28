@@ -35,7 +35,7 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
         <motion.div
           ref={containerRef}
           className="
-          transition-transform duration-[1.75s]
+          transition-transform duration-[1.75s] 
           w-full h-full flex justify-center items-center whitespace-nowrap"
         >
           {arr.map((slide, index) => (
@@ -53,15 +53,15 @@ function Pagination({ arr, currentIndex, setCurrentIndex }) {
               className={`
               hover:text-[#fff] 
               duration-300 cursor-pointer
-              border hover:border-t-wh50 border-wh15
-              py-[1.15em] px-[2em] bg-wh overflow-hidden
+              border hover:border-b-wh50 border-wh15
+              py-[1.5em] px-[3em] bg-wh
               flex justify-center rounded-sm 
                 ${index === currentIndex ? "bg-wh" : "text-wh75"}
                 `}
             >
               {slide.name}
               {currentIndex === index && (
-                <div className="opacity-75 -mt-10 absolute w-[47px] h-[47px] blur-xl bg-white" />
+                <div className="w-[47px] translate-y-8 opacity-50  absolute h-[47px] blur-xl bg-white" />
               )}
             </motion.span>
           ))}

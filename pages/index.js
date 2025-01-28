@@ -25,7 +25,7 @@ export default function Home() {
 
     // Анимация первой секции
     timeline.to(".section-1", {
-      scale: 1.25,
+      scale: 1.05,
       y: -200,
       opacity: 0.25,
       duration: 1,
@@ -62,7 +62,7 @@ export default function Home() {
 
 const Section1 = () => {
   return (
-    <motion.div className="section-1 h-screen sticky top-0 flex justify-center items-center">
+    <motion.div className="h-screen overflow-hidden sticky top-0 flex justify-center items-center">
       <Hero />
     </motion.div>
   );

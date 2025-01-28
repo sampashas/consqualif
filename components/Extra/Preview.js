@@ -69,7 +69,7 @@ const AnimatedSvg = () => {
 
       .fromTo(
         svg.querySelector("circle"),
-        { strokeDasharray: "0, 1000", strokeDashoffset: 0 },
+        { strokeDasharray: "0, 1000", strokeDashoffset: 0, strokeWidth: 10 },
         {
           strokeDasharray: "1000, 1000",
           duration: 2,
@@ -106,13 +106,7 @@ const AnimatedSvg = () => {
       className="w-[10em] h-full"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle
-        className="opacity-50"
-        cx="132.768"
-        cy="113.747"
-        r="113.247"
-        stroke="white"
-      />
+      <circle cx="132.768" cy="113.747" r="113.247" stroke="white" />
       <path
         id="pipe"
         d="M205.703 120.56L178.917 98.2212V143.37L205.703 162.974V120.56Z"
@@ -143,7 +137,7 @@ function LeftSide({ delay, duration }) {
           key={index}
           initial={{ y: "100%" }}
           animate={{ y: 0 }}
-          className="font-[300]"
+          className="font-[400] tracking-[-.05em]"
           transition={{
             duration: duration,
             delay: delay + -index * 0.15, // Задержка для последовательной анимации
@@ -170,7 +164,7 @@ function RightSide({ delay, duration }) {
             delay: delay + index * 0.15, // Задержка для последовательной анимации
             ease: config.animations.speed,
           }}
-          className="font-[300]"
+          className="font-[400] tracking-[-.05em]"
         >
           {char}
         </motion.h2>

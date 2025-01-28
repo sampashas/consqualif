@@ -161,6 +161,7 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
               initial={{ scale: 1.25 }}
               animate={{ scale: 1 }}
               exit={{ scale: 1.25 }}
+              className="section-1"
               transition={{
                 ease: config.animations.speed,
                 duration: 1.5,
