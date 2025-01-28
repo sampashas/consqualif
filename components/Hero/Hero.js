@@ -164,7 +164,7 @@ function Slider({ arr, currentIndex, setCurrentIndex }) {
               transition={{
                 ease: config.animations.speed,
                 duration: 1.5,
-                delay: 1,
+                delay: 2.5,
               }}
             >
               <img
