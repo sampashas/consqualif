@@ -8,8 +8,8 @@ import { useRouter } from "next/router";
 
 function Header() {
   return (
-    <div className="z-[3] fixed my-0 pxes w-full">
-      <nav className="w-full myes md:pt-0 mn:pt-2 flex justify-between gap-6 items-center">
+    <div className="z-[3] fixed pxes w-full">
+      <nav className="w-full flex justify-between gap-4 items-center">
         <LeftNav />
         <Link href="/">
           <Logo />
@@ -17,31 +17,10 @@ function Header() {
         <MobileMenu />
         <RightNav />
       </nav>
-      <Podlojka />
     </div>
   );
 }
-function Podlojka() {
-  return (
-    <motion.div
-      initial={{ y: "-100%" }}
-      animate={{ y: 0 }}
-      transition={{
-        ease: config.animations.speed,
-        duration: 1,
-        delay: 0.5,
-      }}
-      className="absolute border-t border-wh15 flex h-[4em] justify-center items-start z-[-10] w-full top-0 right-0 delay-[1.1s] duration-[1s] -translate-x-1/2"
-    >
-      <div
-        style={{
-          borderRadius: "0px 0px 8px 8px",
-        }}
-        className="w-[19.5em] h-full bg-wh backdrop:backdrop-blur-2xl backdrop-blur-xl"
-      ></div>
-    </motion.div>
-  );
-}
+
 function MobileMenu() {
   return (
     <svg
@@ -82,32 +61,35 @@ function LeftNav() {
   }, [route.asPath]);
 
   return (
-    <>
-      <ul className="mn:hidden md:flex h-fit flex-1 gap-1">
-        {leftSide.map((obj, id) => (
-          <li key={id} className="overflow-hidden w-full flex justify-center">
-            <Link href={obj.link}>
-              <motion.div
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{
-                  ease: config.animations.speed,
-                  duration: 1,
-                  delay: 1.7 + id * -0.1,
-                }}
-              >
-                <span className={`${activeLink === obj.link ? "" : "hover"} `}>
-                  {obj.name}
-                </span>
-                {/* {activeLink === obj.link && (
-                  <div className="w-full translate-y-[-.1em] h-[1px] bg-white" />
-                )} */}
-              </motion.div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul className="mn:hidden md:flex flex-1 gap-1">
+      {leftSide.map((obj, id) => (
+        <li
+          key={id}
+          className="
+            duration-300
+            border hover:border-b-wh50 border-wh15
+            py-[1.1em] flex justify-center
+            overflow-hidden w-full"
+        >
+          <Link href={obj.link}>
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{
+                ease: config.animations.speed,
+                duration: 1,
+                delay: 1.7 + id * -0.1,
+              }}
+            >
+              <span>{obj.name}</span>
+              {activeLink === obj.link && (
+                <div className="w-[47px] absolute h-[47px] blur-xl bg-white" />
+              )}
+            </motion.div>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
 function RightNav() {
@@ -131,9 +113,16 @@ function RightNav() {
   }, [route.asPath]);
 
   return (
-    <ul className="mn:hidden h-fit md:flex flex-1 gap-1 justify-end">
+    <ul className="mn:hidden md:flex flex-1 gap-1 justify-end">
       {rightSide.map((obj, id) => (
-        <li key={id} className="overflow-hidden w-full flex justify-center">
+        <li
+          key={id}
+          className="
+          duration-300
+          border hover:border-b-wh50 border-wh15
+          py-[1.1em] flex justify-center
+          overflow-hidden w-full"
+        >
           <Link href={obj.link}>
             <motion.div
               initial={{ y: "100%" }}
@@ -144,9 +133,7 @@ function RightNav() {
                 delay: 1.7 + id * -0.1,
               }}
             >
-              <span className={`${activeLink === obj.link ? "" : "hover"} `}>
-                {obj.name}
-              </span>
+              <span>{obj.name}</span>
               {activeLink === obj.link && (
                 <div className="w-full translate-y-[-.1em] h-[1px] bg-white" />
               )}
