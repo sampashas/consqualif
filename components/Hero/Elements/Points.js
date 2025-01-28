@@ -97,11 +97,9 @@ function Tooltip({ elementIndex, isHovered }) {
               ease: config.animations.speed,
             }
       }
-      className="absolute z-[100] top-full mt-2 w-max p-2 rounded-md bg-white backdrop:backdrop-blur-2xl backdrop-blur-xl"
+      className="absolute z-[100] top-full mt-2 w-max p-2 rounded-md bg-wh50 backdrop:backdrop-blur-2xl backdrop-blur-xl"
     >
-      <span className="mix-blend-difference text-sm">
-        Hovered on element {elementIndex + 1}
-      </span>
+      <span className=" text-sm text-white">Element {elementIndex + 1}</span>
     </motion.div>
   );
 }
