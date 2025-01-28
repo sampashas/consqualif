@@ -66,9 +66,9 @@ function MobileMenu() {
 
 function LeftNav() {
   const leftSide = [
-    { name: "Projects", link: "/", id: uuidv4() },
-    { name: "Portfolio", link: "/portfolio", id: uuidv4() },
-    // { name: "Service", link: "/service", id: uuidv4() },
+    { name: "Intro", link: "/", id: uuidv4() },
+    { name: "We are", link: "/case", id: uuidv4() },
+    { name: "Cases", link: "/case", id: uuidv4() },
   ];
 
   const route = useRouter();
